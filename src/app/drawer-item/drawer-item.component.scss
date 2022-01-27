@@ -1,0 +1,13 @@
+@import '../../shared/variables';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+    &:hover {
+        background-color: $primary-color;
+        color: black;
+        cursor: pointer;
+    }
+}

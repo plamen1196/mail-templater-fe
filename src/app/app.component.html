@@ -4,7 +4,6 @@
     <header>
         <mat-toolbar class="mat-elevation-z6" color="primary">
             <mat-toolbar-row>
-                <!-- routerLink="/home" -->
                 <button class="home-button" mat-icon-button (click)="drawer.toggle()">
                     <mat-icon class="drawer-icon" *ngIf="!drawer.opened">menu</mat-icon>
                     <mat-icon class="drawer-icon" *ngIf="drawer.opened">close</mat-icon>
@@ -17,7 +16,15 @@
     <!-- Navigation drawer with content -->
     <mat-drawer-container [autosize]="true">
         <mat-drawer #drawer [mode]="'side'">
-            <p>Auto-resizing sidenav</p>
+            <app-drawer-item routerLink="/home">
+                My templates
+            </app-drawer-item>
+            <app-drawer-item>
+                History
+            </app-drawer-item>
+            <app-drawer-item>
+                Send email
+            </app-drawer-item>
         </mat-drawer>
 
         <mat-drawer-content class="mat-app-background">

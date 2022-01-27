@@ -10,10 +10,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { DrawerItemComponent } from './drawer-item/drawer-item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DrawerItemComponent
   ],
   imports: [
     BrowserModule,
