@@ -1,0 +1,62 @@
+@import '../shared/_ui-tools.scss';
+@import '../shared/variables';
+
+.main-section {
+    @include flex-column-centered();
+
+    .banner-section {
+        @include flex-column-centered();
+        flex-grow: 1;
+        width: 100%;
+        height: 420px;
+        
+        background-color: $primary-color;
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 56px;
+            margin: 15px;
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+    
+        .action-button {
+            margin-right: 16px;
+        }
+    }
+
+    .resources-section {
+        @include flex-row-centered();
+
+        .resource-text {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .resource-box {
+            border: 1px solid grey;
+            border-radius: 4px;
+            margin: 16px;
+            padding: 16px;
+
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+
+            .resource-anchor {               
+                @include flex-row-centered();
+                align-items: center;
+                color: inherit;
+                text-decoration: none;
+
+                img {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}
