@@ -1,0 +1,25 @@
+<div class="wrapper mat-app-background">
+    <header>
+        <mat-toolbar class="mat-elevation-z6" color="primary">
+            <mat-toolbar-row>
+                <button class="home-button" mat-icon-button routerLink="/home">
+                    <img src="favicon.ico">
+                </button>
+                Email Templater
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </header>
+
+    <!-- Main content -->
+    <main class="content mat-app-background">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer>
+        <mat-toolbar class="mat-elevation-z6" color="primary">
+            <mat-toolbar-row>
+                FMI
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </footer>
+</div>
