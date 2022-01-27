@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailTemplate } from 'src/models/email-template';
 import { TemplateService } from 'src/services/template.service';
 import { CreateTemplateComponent } from './create-template/create-template.component';
+import { DeleteTemplateComponent } from './delete-template/delete-template.component';
 
 @Component({
   selector: 'app-view-templates',
@@ -69,27 +70,27 @@ export class ViewTemplatesComponent implements OnInit {
   //   });
   // }
 
-  // onDeleteTemplate(emailTemplate: EmailTemplate): void {
-  //   const dialogRef = this.dialog.open(DeleteTemplateComponent, {
-  //     data: { emailTemplate: emailTemplate },
-  //     disableClose: true,
-  //     width: '500px',
-  //     minHeight: 200,
-  //     maxHeight: 800,
-  //     autoFocus: false
-  //   });
+  onDeleteTemplate(emailTemplate: EmailTemplate): void {
+    const dialogRef = this.dialog.open(DeleteTemplateComponent, {
+      data: { emailTemplate: emailTemplate },
+      disableClose: true,
+      width: '500px',
+      minHeight: 200,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
-  //   dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
-  //     if (!cancelClicked) {
-  //       const message = success ? "Template deleted successfully!" : "ERROR when deleting template!";
-  //       this.snackbar.open(message, null, {
-  //         duration: 3000
-  //       });
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+      if (!cancelClicked) {
+        const message = success ? "Template deleted successfully!" : "ERROR when deleting template!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
 
-  //       this.fetchTemplates();
-  //     }
-  //   });
-  // }
+        this.fetchTemplates();
+      }
+    });
+  }
 
   private fetchTemplates(): void {
     this.templateService.getTemplates().subscribe((response: Array<EmailTemplate>) => {

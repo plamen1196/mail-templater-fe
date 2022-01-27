@@ -14,11 +14,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TemplateDashboardRoutingModule } from './template-dashboard-routing.module';
 import { ViewTemplatesComponent } from './view-templates.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
+import { DeleteTemplateComponent } from './delete-template/delete-template.component';
 
 @NgModule({
   declarations: [
     ViewTemplatesComponent,
-    CreateTemplateComponent
+    CreateTemplateComponent,
+    DeleteTemplateComponent
   ],
   imports: [
     CommonModule,

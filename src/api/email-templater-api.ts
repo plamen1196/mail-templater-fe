@@ -8,5 +8,5 @@
     public static readonly PREVIEW_MAILS: string = 'http://localhost:8080/preview-mails';
     public static readonly ADD_TEMPLATE: string = 'http://localhost:8080/templates';
     public static readonly FETCH_TEMPLATES: string = 'http://localhost:8080/templates';
-    public static readonly DELETE_TEMPLATE: string = 'http://localhost:8080/';
+    public static readonly DELETE_TEMPLATE: string = 'http://localhost:8080/templates';
 }

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title align="center">
+    <div>
+        You are about to delete template with title: 
+    </div>
+    <div class="email-template-title">{{ data.emailTemplate.title }}</div>
+    Are you sure?
+</h2>
+
+<mat-dialog-actions class="actions">
+    <button mat-raised-button
+            color="accent"
+            (click)="onCancel()">
+        No
+    </button>
+    <button mat-raised-button
+            color="primary"
+            (click)="onDeleteTemplate()">
+        Yes
+    </button>
+</mat-dialog-actions>
