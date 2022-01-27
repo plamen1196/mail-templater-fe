@@ -17,13 +17,31 @@
     }
 
     header {
-        z-index: 1;
+        z-index: 2;
+
+        .drawer-icon {
+            color: black;
+        }
     }
 
-    .content {
+    mat-drawer-container {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+
+        mat-drawer-content {
+            display: flex;
+
+            main {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+        }
+    }
+
+    footer {
+        z-index: 2;
     }
 }
 
