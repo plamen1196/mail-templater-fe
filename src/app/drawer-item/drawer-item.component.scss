@@ -3,11 +3,15 @@
 :host {
     display: flex;
     flex-direction: column;
+    min-width: 200px;
     padding: 16px;
+
+    h3 {
+        margin: 0;
+    }
 
     &:hover {
         background-color: $primary-color;
-        color: black;
         cursor: pointer;
     }
 }
