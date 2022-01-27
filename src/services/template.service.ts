@@ -25,6 +25,11 @@ export class TemplateService {
 
   deleteTemplate(id: number): Observable<any> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpClient.delete<any>(EmailTemplaterApi.DELETE_TEMPLATE + `/${id}`, { headers });
+    return this.httpClient.delete<any>(EmailTemplaterApi.DELETE_TEMPLATE + `${id}`, { headers });
+  }
+
+  editTemplate(id: number, emailTemplateRequest: EmailTemplate): Observable<EmailTemplate> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    return this.httpClient.patch<any>(EmailTemplaterApi.EDIT_TEMPLATE + `${id}`, emailTemplateRequest, { headers });
   }
 }

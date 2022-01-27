@@ -15,12 +15,14 @@ import { TemplateDashboardRoutingModule } from './template-dashboard-routing.mod
 import { ViewTemplatesComponent } from './view-templates.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { DeleteTemplateComponent } from './delete-template/delete-template.component';
+import { EditTemplateComponent } from './edit-template/edit-template.component';
 
 @NgModule({
   declarations: [
     ViewTemplatesComponent,
     CreateTemplateComponent,
-    DeleteTemplateComponent
+    DeleteTemplateComponent,
+    EditTemplateComponent
   ],
   imports: [
     CommonModule,
