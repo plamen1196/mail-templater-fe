@@ -3,13 +3,21 @@
         <mat-icon>draw</mat-icon>
         Templates Dashboard
     </h1>
-    <button mat-raised-button color="primary" (click)="onCreateTemplate()">
-        + Create new email template
-    </button>
+    <div class="heading-container">
+        <button mat-raised-button color="primary" (click)="onCreateTemplate()">
+            + Create new email template
+        </button>
+        <span class="separator">
+            OR
+        </span>
+        <mat-form-field class="seach-field">
+            <mat-label>Search by title</mat-label>
+            <input matInput [(ngModel)]="titleSearchValue">
+        </mat-form-field>
+    </div>
     <ng-container *ngIf="emailTemplates!.length else empty">
         <div class="cards">
-            <mat-card class="card"
-                    *ngFor="let emailTemplate of emailTemplates">
+            <mat-card class="card" *ngFor="let emailTemplate of emailTemplates | searchTemplate: titleSearchValue">
                 <mat-card-header>
                     <mat-card-title>{{ emailTemplate.title }}</mat-card-title>
                 </mat-card-header>

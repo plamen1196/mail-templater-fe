@@ -17,6 +17,7 @@ import { EditTemplateComponent } from './edit-template/edit-template.component';
 export class ViewTemplatesComponent implements OnInit {
 
   emailTemplates: Array<EmailTemplate> = [];
+  titleSearchValue: string = '';
 
   constructor(
     private dialog: MatDialog,

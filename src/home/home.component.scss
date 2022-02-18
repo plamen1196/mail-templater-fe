@@ -1,5 +1,5 @@
 @import '../shared/_ui-tools.scss';
-@import '../shared/variables';
+@import '../shared/_variables.scss';
 
 .main-section {
     @include flex-column-centered();

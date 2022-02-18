@@ -1,5 +1,5 @@
 @import '../shared/_ui-tools.scss';
-@import '../shared/variables';
+@import '../shared/_variables.scss';
 
 :host {
     display: flex;
@@ -9,14 +9,29 @@
 
     .container {
         @include flex-column-centered();
+
         padding: 16px;
+        
+        .heading-container {
+            @include flex-row-centered();
 
-        h1 {
-            display: flex;
-            align-items: center;
+            h1 {
+                display: flex;
+                align-items: center;
+    
+                mat-icon {
+                    margin-right: 8px;
+                }
+            }
 
-            mat-icon {
-                margin-right: 8px;
+            .separator {
+                margin: 0 16px 0 16px;
+            }
+
+            .seach-field {
+                display: flex;
+                align-items: flex-start;
+                margin-top: 16px;
             }
         }
     }

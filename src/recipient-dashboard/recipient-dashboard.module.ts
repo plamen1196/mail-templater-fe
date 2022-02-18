@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ViewRecipientsComponent } from './view-recipients.component';
 import { RecipientDashboardRoutingModule } from './recipient-dashboard-routing.module';
 import { CreateRecipientComponent } from './create-recipient/create-recipient.component';
+import { UtilModule } from 'src/util/util.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CreateRecipientComponent } from './create-recipient/create-recipient.co
     RecipientDashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    UtilModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,

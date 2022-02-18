@@ -16,6 +16,7 @@ import { ViewTemplatesComponent } from './view-templates.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { DeleteTemplateComponent } from './delete-template/delete-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
+import { UtilModule } from 'src/util/util.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditTemplateComponent } from './edit-template/edit-template.component';
     TemplateDashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    UtilModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,

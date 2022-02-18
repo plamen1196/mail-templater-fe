@@ -15,6 +15,7 @@ import { CreateRecipientComponent } from './create-recipient/create-recipient.co
 export class ViewRecipientsComponent implements OnInit {
 
   recipients: Array<RecipientResource> = [];
+  emailSearchValue: string = '';
 
   constructor(
     private dialog: MatDialog,

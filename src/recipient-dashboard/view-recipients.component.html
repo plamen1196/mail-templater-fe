@@ -3,12 +3,21 @@
         <mat-icon>person</mat-icon>
         Recipients Dashboard
     </h1>
-    <button mat-raised-button color="primary" (click)="onCreateRecipient()">
-        + Create new recipient
-    </button>
+    <div class="heading-container">
+        <button mat-raised-button color="primary" (click)="onCreateRecipient()">
+            + Create new recipient
+        </button>
+        <span class="separator">
+            OR
+        </span>
+        <mat-form-field class="seach-field">
+            <mat-label>Search by email</mat-label>
+            <input matInput [(ngModel)]="emailSearchValue">
+        </mat-form-field>
+    </div>
     <ng-container *ngIf="recipients!.length else empty">
         <div class="cards">
-            <mat-card class="card" *ngFor="let recipient of recipients">
+            <mat-card class="card" *ngFor="let recipient of recipients | searchRecipient: emailSearchValue">
                 <mat-card-header>
                     <mat-card-title>{{ recipient.email }}</mat-card-title>
                 </mat-card-header>
