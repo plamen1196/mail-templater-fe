@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EmailTemplaterApi } from 'src/api/email-templater-api';
 import { EmailRecord } from 'src/models/email-record';
-import { EmailTemplate } from 'src/models/email-template';
+import { EmailTemplate } from 'src/models/templates/email-template';
 import { PreviewRecipientEmail } from 'src/models/preview-recipient-email';
 import { Recipient } from 'src/models/recipient';
 import { RecipientRequest } from 'src/models/recipient-request';

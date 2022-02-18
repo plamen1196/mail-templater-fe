@@ -1,4 +1,4 @@
-import { EmailTemplate } from "./email-template";
+import { EmailTemplate } from "./templates/email-template";
 import { RecipientRequest } from "./recipient-request";
 
 export class SendMailRequest extends EmailTemplate {

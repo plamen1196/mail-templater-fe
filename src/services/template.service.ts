@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { EmailTemplaterApi } from 'src/api/email-templater-api';
-import { EmailTemplate } from 'src/models/email-template';
+import { EmailTemplate } from 'src/models/templates/email-template';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,12 @@ export class TemplateService {
 
   getTemplates(): Observable<Array<EmailTemplate>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpClient.get<Array<EmailTemplate>>(EmailTemplaterApi.FETCH_TEMPLATES, { headers });
+    return this.httpClient.get<Array<EmailTemplate>>(EmailTemplaterApi.GET_TEMPLATES, { headers });
   }
 
   addTemplate(emailTemplateRequest: EmailTemplate): Observable<EmailTemplate> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpClient.post<EmailTemplate>(EmailTemplaterApi.ADD_TEMPLATE, emailTemplateRequest, { headers });
+    return this.httpClient.post<EmailTemplate>(EmailTemplaterApi.CREATE_TEMPLATE, emailTemplateRequest, { headers });
   }
 
   deleteTemplate(id: number): Observable<any> {
@@ -30,6 +30,6 @@ export class TemplateService {
 
   editTemplate(id: number, emailTemplateRequest: EmailTemplate): Observable<EmailTemplate> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpClient.patch<any>(EmailTemplaterApi.EDIT_TEMPLATE + `${id}`, emailTemplateRequest, { headers });
+    return this.httpClient.patch<any>(EmailTemplaterApi.PATCH_TEMPLATE + `${id}`, emailTemplateRequest, { headers });
   }
 }

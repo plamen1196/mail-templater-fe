@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { EmailTemplate } from 'src/models/email-template';
+import { EmailTemplate } from 'src/models/templates/email-template';
 import { TemplateService } from 'src/services/template.service';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { DeleteTemplateComponent } from './delete-template/delete-template.component';
