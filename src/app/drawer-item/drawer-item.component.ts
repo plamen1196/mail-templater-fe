@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -7,6 +7,9 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./drawer-item.component.scss']
 })
 export class DrawerItemComponent {
+
+  @Input()
+  icon: string;
 
   constructor(private drawer: MatDrawer) { }
 

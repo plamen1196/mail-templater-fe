@@ -15,11 +15,17 @@
     <!-- Navigation drawer with content -->
     <mat-drawer-container [autosize]="true">
         <mat-drawer #drawer [mode]="'side'">
-            <app-drawer-item routerLink="/home">
+            <app-drawer-item routerLink="/home" [icon]="'home'">
                 Home
             </app-drawer-item>
-            <app-drawer-item routerLink="/view-templates">
-                My templates
+            <app-drawer-item routerLink="/view-templates" [icon]="'draw'">
+                Email templates
+            </app-drawer-item>
+            <app-drawer-item routerLink="/view-recipients" [icon]="'person'">
+                Recipients
+            </app-drawer-item>
+            <app-drawer-item routerLink="/view-recipient-groups" [icon]="'people'">
+                Recipient groups
             </app-drawer-item>
             <app-drawer-item>
                 History

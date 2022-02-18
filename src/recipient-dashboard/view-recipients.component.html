@@ -1,0 +1,38 @@
+<div class="container">
+    <h1 class="mat-h1">
+        <mat-icon>person</mat-icon>
+        Recipients Dashboard
+    </h1>
+    <button mat-raised-button color="primary" (click)="onCreateRecipient()">
+        + Create new recipient
+    </button>
+    <ng-container *ngIf="recipients!.length else empty">
+        <div class="cards">
+            <mat-card class="card" *ngFor="let recipient of recipients">
+                <mat-card-header>
+                    <mat-card-title>{{ recipient.email }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p *ngIf="recipient.firstName">First name: {{ recipient.firstName }}</p>
+                    <p *ngIf="recipient.lastName">Last name: {{ recipient.lastName }}</p>
+                    <p *ngIf="recipient.phoneNumber">Phone number: {{ recipient.phoneNumber }}</p>
+                    <p *ngIf="recipient.address">Address: {{ recipient.address }}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-icon-button (click)="onDeleteRecipient(recipient)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onEditRecipient(recipient)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </ng-container>
+</div>
+
+<ng-template #empty>
+    <h4 class="mat-h4 title">
+        No recipients :(
+    </h4>
+</ng-template>

@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'view-templates',
     loadChildren: () => import('../template-dashboard/template-dashboard.module').then(m => m.TemplateDashboardModule)
+  },
+  {
+    path: 'view-recipients',
+    loadChildren: () => import('../recipient-dashboard/recipient-dashboard.module').then(m => m.RecipientDashboardModule)
   }
 ];
 
