@@ -33,7 +33,7 @@ export class CreateTemplateComponent {
     emailTemplate.message = this.formGroup.controls['message'].value;
     emailTemplate.placeholders = this.utilService.extractPlaceholders(emailTemplate.message);
 
-    this.templateService.addTemplate(emailTemplate).subscribe(
+    this.templateService.createTemplate(emailTemplate).subscribe(
       (response: EmailTemplate) => { this.handleSucces(response); },
       (response: HttpErrorResponse) => { this.handleFailure(response); }
     );

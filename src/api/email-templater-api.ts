@@ -15,7 +15,7 @@
 
     /* Recipients */
     public static readonly CREATE_RECIPIENT: string = 'http://localhost:8080/recipients';
-    public static readonly GET_RECIPIENT: string = 'http://localhost:8080/recipients';
+    public static readonly GET_RECIPIENTS: string = 'http://localhost:8080/recipients';
     public static readonly DELETE_RECIPIENT: string = 'http://localhost:8080/recipients/';
     public static readonly PATCH_RECIPIENT: string = 'http://localhost:8080/recipients/';
 

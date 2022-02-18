@@ -18,7 +18,7 @@ export class TemplateService {
     return this.httpClient.get<Array<EmailTemplate>>(EmailTemplaterApi.GET_TEMPLATES, { headers });
   }
 
-  addTemplate(emailTemplateRequest: EmailTemplate): Observable<EmailTemplate> {
+  createTemplate(emailTemplateRequest: EmailTemplate): Observable<EmailTemplate> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     return this.httpClient.post<EmailTemplate>(EmailTemplaterApi.CREATE_TEMPLATE, emailTemplateRequest, { headers });
   }
