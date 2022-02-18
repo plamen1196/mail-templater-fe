@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { EmailTemplaterApi } from 'src/api/email-templater-api';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
 
