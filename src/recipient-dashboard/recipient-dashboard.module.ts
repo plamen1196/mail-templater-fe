@@ -15,11 +15,13 @@ import { ViewRecipientsComponent } from './view-recipients.component';
 import { RecipientDashboardRoutingModule } from './recipient-dashboard-routing.module';
 import { CreateRecipientComponent } from './create-recipient/create-recipient.component';
 import { UtilModule } from 'src/util/util.module';
+import { EditRecipientComponent } from './edit-recipient/edit-recipient.component';
 
 @NgModule({
   declarations: [
     ViewRecipientsComponent,
-    CreateRecipientComponent
+    CreateRecipientComponent,
+    EditRecipientComponent
   ],
   imports: [
     CommonModule,

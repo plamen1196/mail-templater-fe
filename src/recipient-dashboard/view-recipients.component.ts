@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
 import { RecipientService } from 'src/services/recipient.service';
 import { CreateRecipientComponent } from './create-recipient/create-recipient.component';
+import { EditRecipientComponent } from './edit-recipient/edit-recipient.component';
 
 @Component({
   selector: 'app-view-recipients',
@@ -48,11 +49,29 @@ export class ViewRecipientsComponent implements OnInit {
     });
   }
 
-  onDeleteRecipient(recipient: RecipientResource): void {
-    
+  onEditRecipient(recipientResource: RecipientResource): void {
+    const dialogRef = this.dialog.open(EditRecipientComponent, {
+      data: { recipientResource: recipientResource },
+      disableClose: true,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+      if (!cancelClicked) {
+        const message = success ? "Recipient edited successfully!" : "ERROR when editing recipient!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
+
+        this.fetchRecipients();
+      }
+    });
   }
 
-  onEditRecipient(recipient: RecipientResource): void {
+  onDeleteRecipient(recipient: RecipientResource): void {
     
   }
 
