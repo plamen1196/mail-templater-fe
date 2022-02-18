@@ -13,10 +13,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ViewRecipientsComponent } from './view-recipients.component';
 import { RecipientDashboardRoutingModule } from './recipient-dashboard-routing.module';
+import { CreateRecipientComponent } from './create-recipient/create-recipient.component';
 
 @NgModule({
   declarations: [
-    ViewRecipientsComponent
+    ViewRecipientsComponent,
+    CreateRecipientComponent
   ],
   imports: [
     CommonModule,

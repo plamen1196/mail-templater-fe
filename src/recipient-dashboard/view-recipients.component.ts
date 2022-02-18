@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
 import { RecipientService } from 'src/services/recipient.service';
+import { CreateRecipientComponent } from './create-recipient/create-recipient.component';
 
 @Component({
   selector: 'app-view-recipients',
@@ -25,7 +26,25 @@ export class ViewRecipientsComponent implements OnInit {
   }
 
   onCreateRecipient(): void {
+    const dialogRef = this.dialog.open(CreateRecipientComponent, {
+      data: {},
+      disableClose: true,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+      if (!cancelClicked) {
+        const message = success ? "Recipient created successfully!" : "ERROR when creating recipient!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
+
+        this.fetchRecipients();
+      }
+    });
   }
 
   onDeleteRecipient(recipient: RecipientResource): void {
