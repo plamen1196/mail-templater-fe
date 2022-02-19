@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { SearchRecipientPipe } from './search-recipient.pipe';
 import { SearchTemplatePipe } from './search-template.pipe';
+import { SearchRecipientGroupPipe } from './search-recipient-group.pipe';
 
 @NgModule({
   declarations: [
     SearchRecipientPipe,
-    SearchTemplatePipe
+    SearchTemplatePipe,
+    SearchRecipientGroupPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
     SearchRecipientPipe,
-    SearchTemplatePipe
+    SearchTemplatePipe,
+    SearchRecipientGroupPipe
   ]
 })
 export class UtilModule { }

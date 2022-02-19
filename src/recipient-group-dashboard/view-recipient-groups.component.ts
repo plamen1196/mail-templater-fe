@@ -22,7 +22,6 @@ export class ViewRecipientGroupsComponent implements OnInit {
     private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
-    console.log('reload');
     this.fetchRecipientGroups();
   }
 
