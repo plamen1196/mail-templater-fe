@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
@@ -7,21 +7,25 @@ import { RecipientGroupService } from 'src/services/recipient-group.service';
 @Component({
   selector: 'app-recipient-group-details',
   templateUrl: './recipient-group-details.component.html',
-  styleUrls: ['./recipient-group-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./recipient-group-details.component.scss']
 })
-export class RecipientGroupDetailsComponent implements OnChanges {
+export class RecipientGroupDetailsComponent {
+
+  private _recipientGroup: RecipientGroupResource;
 
   @Input()
-  recipientGroup: RecipientGroupResource;
+  get recipientGroup(): RecipientGroupResource {
+    return this._recipientGroup;
+  }
+
+  set recipientGroup(value: RecipientGroupResource) {
+    this._recipientGroup = value;
+    this.fetchRecipientsOfGroup(this.recipientGroup);
+  }
 
   recipients: Array<RecipientResource> = [];
 
   constructor(private recipientGroupService: RecipientGroupService) { }
-
-  ngOnChanges(): void {
-    this.fetchRecipientsOfGroup(this.recipientGroup);
-  }
 
   private fetchRecipientsOfGroup(recipientGroup: RecipientGroupResource) {
     if (!recipientGroup?.id) {

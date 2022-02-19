@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
 import { RecipientGroupService } from 'src/services/recipient-group.service';
+import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
 
 @Component({
   selector: 'app-view-recipient-groups',
@@ -21,11 +22,30 @@ export class ViewRecipientGroupsComponent implements OnInit {
     private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
+    console.log('reload');
     this.fetchRecipientGroups();
   }
 
   onCreateRecipientGroup(): void {
+    const dialogRef = this.dialog.open(CreateRecipientGroupComponent, {
+      data: {},
+      disableClose: true,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+      if (!cancelClicked) {
+        const message = success ? "Recipient group created successfully!" : "ERROR when creating recipient group!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
+
+        this.fetchRecipientGroups();
+      }
+    });
   }
 
   onEditRecipientGroup(recipientGroupResource: RecipientGroupResource): void {
@@ -36,7 +56,7 @@ export class ViewRecipientGroupsComponent implements OnInit {
 
   }
 
-  onSelectRecipientGroup(recipientGroupResource: RecipientGroupResource): void {
+  onSelectRecipientGroup(recipientGroupResource: RecipientGroupResource): void {    
     this.selectedRecipientGroup = recipientGroupResource;
   }
 

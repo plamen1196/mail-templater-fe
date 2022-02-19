@@ -15,6 +15,6 @@ export class DrawerItemComponent {
 
   @HostListener('click')
   onClick(): void {
-    this.drawer.close();
+    // this.drawer.close();
   }
 }

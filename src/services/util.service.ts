@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RecipientResource } from 'src/models/recipients/recipient-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,21 @@ export class UtilService {
     regexResult =  Array.from(new Set(regexResult));
 
     return regexResult;
+  }
+
+  getRecipientResourcesFromIds(recipientResources: Array<RecipientResource>, recipientIds: Array<number>) {
+    if (!recipientResources?.length || !recipientIds?.length) {
+      return [];
+    }
+
+    return recipientResources.filter((recipient: RecipientResource) => recipientIds.includes(recipient.id));
+  }
+
+  buildCommaSeparatedString(arr: Array<number>) {
+    if (!arr?.length) {
+      return '';
+    }
+
+    return arr.join(',');
   }
 }
