@@ -12,17 +12,17 @@
 
         padding: 16px;
 
+        h1 {
+            display: inline-flex;
+            align-items: center;
+
+            mat-icon {
+                margin-right: 8px;
+            }
+        }
+
         .heading-container {
             @include flex-row-centered();
-
-            h1 {
-                display: inline-flex;
-                align-items: center;
-
-                mat-icon {
-                    margin-right: 8px;
-                }
-            }
 
             .separator {
                 margin: 0 16px 0 16px;

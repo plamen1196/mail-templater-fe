@@ -13,12 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'view-templates',
+    path: 'templates',
     loadChildren: () => import('../template-dashboard/template-dashboard.module').then(m => m.TemplateDashboardModule)
   },
   {
-    path: 'view-recipients',
+    path: 'recipients',
     loadChildren: () => import('../recipient-dashboard/recipient-dashboard.module').then(m => m.RecipientDashboardModule)
+  },
+  {
+    path: 'recipient-groups',
+    loadChildren: () => import('../recipient-group-dashboard/recipient-groups-dashboard.module').then(m => m.RecipientGroupsDashboardModule)
   }
 ];
 
