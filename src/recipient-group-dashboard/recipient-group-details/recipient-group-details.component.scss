@@ -1,0 +1,15 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/_variables.scss';
+
+:host {
+    mat-card {
+        min-width: 320px;
+        background-color: $primary-color;
+
+        mat-card-title {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+    }
+}

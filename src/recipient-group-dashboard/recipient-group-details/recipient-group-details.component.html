@@ -1,0 +1,30 @@
+<mat-card *ngIf="recipientGroup else missingRecipientGroupTemplate">
+    <mat-card-title>
+        <mat-icon mat-card-avatar>people</mat-icon>
+        {{ recipientGroup.title }}
+    </mat-card-title>
+
+    <mat-card-content>
+        <ng-container *ngIf="recipients?.length else emptyRecipients">
+            <mat-list>
+                <div mat-subheader>Recipients</div>
+                <mat-list-item *ngFor="let recipient of recipients">
+                    <mat-icon mat-list-icon>person</mat-icon>
+                    <div mat-line>{{ recipient.email }}</div>
+                </mat-list-item>
+            </mat-list>
+        </ng-container>
+    </mat-card-content>
+</mat-card>
+
+<ng-template #missingRecipientGroupTemplate>
+    <mat-card>
+        <mat-card-title>
+            No recipient group selected
+        </mat-card-title>
+    </mat-card>
+</ng-template>
+
+<ng-template #emptyRecipients>
+    The group is empty
+</ng-template>

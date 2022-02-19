@@ -1,1 +1,47 @@
-<p>view-recipient-groups works!</p>
+<div class="container">
+    <h1 class="mat-h1">
+        <mat-icon>people</mat-icon>
+        Recipient groups Dashboard
+    </h1>
+    <div class="heading-container">
+        <button mat-raised-button color="primary" (click)="onCreateRecipientGroup()">
+            + Create new recipient group
+        </button>
+        <span class="separator">
+            OR
+        </span>
+        <mat-form-field class="seach-field">
+            <mat-label>Search by title</mat-label>
+            <input matInput [(ngModel)]="titleSearchValue">
+        </mat-form-field>
+    </div>
+    <div class="recipient-groups-container" *ngIf="recipientGroups!.length else empty">
+        <div class="cards">
+            <mat-card class="card" *ngFor="let recipientGroup of recipientGroups">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar>people</mat-icon>
+                    <mat-card-title>{{ recipientGroup.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-actions>
+                    <button mat-icon-button (click)="onDeleteRecipientGroup(recipientGroup)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onEditRecipientGroup(recipientGroup)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-raised-button color="primary" (click)="onSelectRecipientGroup(recipientGroup)">
+                        Select
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <app-recipient-group-details [recipientGroup]="selectedRecipientGroup"></app-recipient-group-details>
+    </div>
+</div>
+
+<ng-template #empty>
+    <h4 class="mat-h4 title">
+        No recipient groups :(
+    </h4>
+</ng-template>

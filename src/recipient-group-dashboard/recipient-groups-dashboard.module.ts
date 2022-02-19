@@ -10,14 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRippleModule } from '@angular/material/core'; 
+import { MatListModule } from '@angular/material/list';
 
 import { UtilModule } from 'src/util/util.module';
  import { ViewRecipientGroupsComponent } from './view-recipient-groups.component';
 import { RecipientGroupsDashboardRoutingModule } from './recipient-groups-dashboard-routing.module';
+import { RecipientGroupDetailsComponent } from './recipient-group-details/recipient-group-details.component';
 
 @NgModule({
   declarations: [
-    ViewRecipientGroupsComponent
+    ViewRecipientGroupsComponent,
+    RecipientGroupDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { RecipientGroupsDashboardRoutingModule } from './recipient-groups-dashbo
     MatInputModule,
     MatChipsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRippleModule,
+    MatListModule
   ]
 })
 export class RecipientGroupsDashboardModule { }

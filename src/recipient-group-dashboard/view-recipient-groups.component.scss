@@ -1,0 +1,83 @@
+@import '../shared/_ui-tools.scss';
+@import '../shared/_variables.scss';
+
+:host {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    .container {
+        @include flex-column-centered();
+
+        padding: 16px;
+
+        h1 {
+            display: flex;
+            align-items: center;
+
+            mat-icon {
+                margin-right: 8px;
+            }
+        }
+        
+        .heading-container {
+            @include flex-row-centered();
+
+            .separator {
+                margin: 0 16px 0 16px;
+            }
+
+            .seach-field {
+                display: flex;
+                align-items: flex-start;
+                margin-top: 16px;
+            }
+        }
+
+        .recipient-groups-container {
+            @include flex-row-centered();
+
+            padding: 32px;
+            
+            app-recipient-group-details {
+                margin: 8px 8px auto 8px;
+            }
+        }
+    }
+
+    .title {
+        font-size: 24px;
+        margin: 16px 0;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        // height: 100%;
+        overflow: auto;
+
+        .card {
+            @include flex-column-centered();
+
+            transition: all 150ms ease-in-out;
+            margin: 8px;
+            min-height: 120px;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+            }
+
+            mat-card-header {
+                display: flex;
+                width: 100%;
+                flex-grow: 1;
+            }
+
+            mat-card-actions {
+                margin-right: auto;
+            }
+        }
+    }
+}
