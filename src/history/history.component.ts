@@ -23,6 +23,7 @@ export class HistoryComponent {
     private emailService: EmailService,
     private snackbar: MatSnackBar) {
     this.formGroup = this.generateForm();
+    this.historyRecordsHeading = 'No matching records';
   }
 
   onLoadFullHistory(): void {
@@ -37,12 +38,24 @@ export class HistoryComponent {
     const startDate: Date = this.formGroup.controls['startDate'].value;
     const endDate: Date = this.formGroup.controls['endDate'].value;
 
-    if (!startDate || !endDate) {
+    if (!startDate && !endDate) {
       return;
     }
 
-    this.historyRecordsHeading =
-      `History between ${startDate.toLocaleDateString('en-GB')} and ${endDate.toLocaleDateString('en-GB')}`;
+    if (startDate && endDate) {
+      this.historyRecordsHeading =
+        `History between ${startDate.toLocaleDateString('en-GB')} and ${endDate.toLocaleDateString('en-GB')}`;
+    }
+
+    if (startDate && !endDate) {
+      this.historyRecordsHeading =
+        `History after ${startDate.toLocaleDateString('en-GB')}`;
+    }
+
+    if (!startDate && endDate) {
+      this.historyRecordsHeading =
+        `History before ${endDate.toLocaleDateString('en-GB')}`;
+    }
 
     this.emailService.getHistory(startDate, endDate).subscribe(
       (response: Array<SentEmailResource>) => { this.handleSucces(response); },

@@ -20,14 +20,7 @@ export class EmailService {
 
   getHistory(startDate?: Date, endDate?: Date): Observable<Array<SentEmailResource>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    let params = {};
-
-    if (startDate && endDate) {
-      console.log(startDate);
-      console.log(endDate);
-      params = new HttpParams().appendAll(
-        { 'startDate': startDate.toISOString(), 'endDate': endDate.toISOString() });
-    }
+    const params = this.buildHistoryDateParams(startDate, endDate);
 
     return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
   }
@@ -78,5 +71,24 @@ export class EmailService {
     recipientRequest.placeholders = convertedMap;
 
     return recipientRequest;
+  }
+
+  private buildHistoryDateParams(startDate?: Date, endDate?: Date): HttpParams {
+    let params = new HttpParams();
+
+    if (startDate && endDate) {
+      params = new HttpParams().appendAll(
+        { 'startDate': startDate.toISOString(), 'endDate': endDate.toISOString() });
+    }
+
+    if (startDate && !endDate) {
+      params = new HttpParams().append('startDate', startDate.toISOString());
+    }
+
+    if (!startDate && endDate) {
+      params = new HttpParams().append('endDate', endDate.toISOString());
+    }
+
+    return params;
   }
 }

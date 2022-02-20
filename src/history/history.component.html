@@ -28,39 +28,41 @@
         </form>
     </div>
 
-    <div class="sent-emails-container" *ngIf="sentEmails!.length else empty">
+    <div class="sent-emails-container" >
         <h2 class="mat-h2">
             Showing: <strong>{{ historyRecordsHeading }}</strong>
         </h2>
-        <mat-card *ngFor="let sentEmail of sentEmails">
-            <mat-card-title>
-                Subject: {{ sentEmail.subject }}
-            </mat-card-title>
-            <mat-card-content>
-                <div>
-                    <span class="email-field">From: </span>
-                    {{ sentEmail.senderEmail }}
-                </div>
-                <div>
-                    <span class="email-field">To: </span>
-                    {{ sentEmail.recipientEmail }}
-                </div>
-                <div>
-                    <span class="email-field">Date: </span>
-                    {{ sentEmail.timestamp }}
-                </div>
-                <div>
-                    <span class="email-field">Sent successfully: </span>
-                    <span class="sent-successfully-field" [class.sent-successfully]="sentEmail.sentSuccessfully">
-                        {{ sentEmail.sentSuccessfully ? 'Yes' : 'No' }}
-                    </span>
-                </div>
-                <div>
-                    <span class="email-field">Message: </span>
-                    {{ sentEmail.message }}
-                </div>
-            </mat-card-content>
-        </mat-card>
+        <ng-container *ngIf="sentEmails!.length else empty">
+            <mat-card *ngFor="let sentEmail of sentEmails">
+                <mat-card-title>
+                    Subject: {{ sentEmail.subject }}
+                </mat-card-title>
+                <mat-card-content>
+                    <div>
+                        <span class="email-field">From: </span>
+                        {{ sentEmail.senderEmail }}
+                    </div>
+                    <div>
+                        <span class="email-field">To: </span>
+                        {{ sentEmail.recipientEmail }}
+                    </div>
+                    <div>
+                        <span class="email-field">Date: </span>
+                        {{ sentEmail.timestamp }}
+                    </div>
+                    <div>
+                        <span class="email-field">Sent successfully: </span>
+                        <span class="sent-successfully-field" [class.sent-successfully]="sentEmail.sentSuccessfully">
+                            {{ sentEmail.sentSuccessfully ? 'Yes' : 'No' }}
+                        </span>
+                    </div>
+                    <div>
+                        <span class="email-field">Message: </span>
+                        {{ sentEmail.message }}
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
     </div>
 </div>
 
