@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'recipient-groups',
     loadChildren: () => import('../recipient-group-dashboard/recipient-groups-dashboard.module').then(m => m.RecipientGroupsDashboardModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('../history/history.module').then(m => m.HistoryModule)
   }
 ];
 

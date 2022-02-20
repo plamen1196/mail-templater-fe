@@ -3,9 +3,9 @@
  */
  export class EmailTemplaterApi {
     public static readonly HOME: string = 'http://localhost:8080/';
-    public static readonly HISTORY: string = 'http://localhost:8080/history';
     public static readonly SEND_MAILS: string = 'http://localhost:8080/send-mails';
     public static readonly PREVIEW_MAILS: string = 'http://localhost:8080/preview-mails';
+    public static readonly HISTORY: string = 'http://localhost:8080/history';
 
     /* Email templates */
     public static readonly CREATE_TEMPLATE: string = 'http://localhost:8080/templates';

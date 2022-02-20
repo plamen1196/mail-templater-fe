@@ -1,8 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { EmailTemplaterApi } from 'src/api/email-templater-api';
-import { EmailRecord } from 'src/models/email-record';
+import { SentEmailResource } from 'src/models/sent-email-resource';
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { PreviewRecipientEmail } from 'src/models/preview-recipient-email';
 import { Recipient } from 'src/models/recipient';
@@ -12,13 +14,22 @@ import { SendMailRequest } from 'src/models/send-mail-request';
 @Injectable({
   providedIn: 'root'
 })
-export class MailService {
+export class EmailService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getHistory(): Observable<Array<EmailRecord>> {
+  getHistory(startDate?: Date, endDate?: Date): Observable<Array<SentEmailResource>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpClient.get<Array<EmailRecord>>(EmailTemplaterApi.HISTORY, { headers });
+    let params = {};
+
+    if (startDate && endDate) {
+      console.log(startDate);
+      console.log(endDate);
+      params = new HttpParams().appendAll(
+        { 'startDate': startDate.toISOString(), 'endDate': endDate.toISOString() });
+    }
+
+    return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
   }
 
   sendMail(emailTemplate: EmailTemplate, recipients: Array<Recipient>, html: boolean): Observable<number> {

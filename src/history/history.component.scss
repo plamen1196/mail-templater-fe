@@ -1,0 +1,66 @@
+@import '../shared/_ui-tools.scss';
+@import '../shared/_variables.scss';
+
+:host {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    .container {
+        @include flex-column-centered();
+        
+        width: 100%;
+        padding: 16px;
+
+        h1 {
+            display: flex;
+            align-items: center;
+
+            mat-icon {
+                margin-right: 8px;
+            }
+        }
+        
+        .heading-container {
+            @include flex-column-centered();
+
+            .separator {
+                margin: 16px 0 16px 0;
+            }
+
+            form {
+                @include flex-row-centered();
+
+                button {
+                    margin-left: 16px;
+                }
+            }
+        }
+
+        .sent-emails-container {
+            width: 100%;
+            margin-top: 32px;
+            text-align: center;
+
+            mat-card {
+                margin: 16px auto;
+                max-width: 600px;
+                text-align: left;
+
+                .email-field {
+                    font-weight: 500;
+                    color: $primary-color;
+                }
+
+                .sent-successfully-field {
+                    color: lightcoral;
+
+                    &.sent-successfully {
+                        color: lightgreen;
+                    }
+                }
+            }
+        }
+    }
+}
