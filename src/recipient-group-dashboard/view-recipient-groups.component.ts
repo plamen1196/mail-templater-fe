@@ -61,19 +61,25 @@ export class ViewRecipientGroupsComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, editedRecipientGroupResourceId }) => {
       if (!cancelClicked) {
         const message = success ? "Recipient group edited successfully!" : "ERROR when editing recipient group!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
 
-        this.fetchRecipientGroups();
+        this.fetchRecipientGroups(() => {
+          /* If the edited recipient group was the selected one, then reset the selection. */
+          if (success &&
+              editedRecipientGroupResourceId &&
+              (editedRecipientGroupResourceId === this.selectedRecipientGroup?.id)) {
+            const recipientGroup = this.recipientGroups.find(rc => rc.id === editedRecipientGroupResourceId);
+
+            this.selectedRecipientGroup = recipientGroup ? recipientGroup : null;
+          }
+        });
       }
     });
-
-    /* Update selected recipient group to refresh data */
-    // TODO
   }
 
   onDeleteRecipientGroup(recipientGroupResource: RecipientGroupResource): void {
@@ -93,12 +99,14 @@ export class ViewRecipientGroupsComponent implements OnInit {
           duration: 3000
         });
 
-        this.fetchRecipientGroups();
-
-        /* If the deleted recipient group was the selected one, then reset the selection. */
-        if (success && deletedRecipientGroupId && (deletedRecipientGroupId === this.selectedRecipientGroup?.id)) {
-          this.selectedRecipientGroup = null;
-        }
+        this.fetchRecipientGroups(() => {
+          /* If the deleted recipient group was the selected one, then reset the selection. */
+          if (success &&
+              deletedRecipientGroupId &&
+              (deletedRecipientGroupId === this.selectedRecipientGroup?.id)) {
+            this.selectedRecipientGroup = null;
+          }
+        });
       }
     });
   }
@@ -107,9 +115,13 @@ export class ViewRecipientGroupsComponent implements OnInit {
     this.selectedRecipientGroup = recipientGroupResource;
   }
 
-  private fetchRecipientGroups(): void {
+  private fetchRecipientGroups(callback?: () => void): void {
     this.recipientGroupService.getRecipientGroups().subscribe((response: Array<RecipientGroupResource>) => {
       this.recipientGroups = response;
+
+      if (callback) {
+        callback();
+      }
     });
   }
 }
