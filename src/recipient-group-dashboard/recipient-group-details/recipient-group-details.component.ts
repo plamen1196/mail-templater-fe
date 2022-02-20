@@ -11,14 +11,14 @@ import { RecipientGroupService } from 'src/services/recipient-group.service';
 })
 export class RecipientGroupDetailsComponent {
 
-  private _recipientGroup: RecipientGroupResource;
+  private _recipientGroup: RecipientGroupResource | null;
 
   @Input()
-  get recipientGroup(): RecipientGroupResource {
+  get recipientGroup(): RecipientGroupResource | null {
     return this._recipientGroup;
   }
 
-  set recipientGroup(value: RecipientGroupResource) {
+  set recipientGroup(value: RecipientGroupResource | null) {
     this._recipientGroup = value;
     this.fetchRecipientsOfGroup(this.recipientGroup);
   }
@@ -27,7 +27,7 @@ export class RecipientGroupDetailsComponent {
 
   constructor(private recipientGroupService: RecipientGroupService) { }
 
-  private fetchRecipientsOfGroup(recipientGroup: RecipientGroupResource) {
+  private fetchRecipientsOfGroup(recipientGroup: RecipientGroupResource | null) {
     if (!recipientGroup?.id) {
       return;
     }

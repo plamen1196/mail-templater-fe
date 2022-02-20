@@ -39,11 +39,17 @@ export class RecipientGroupService {
     return this.httpClient.get<Array<RecipientResource>>(EmailTemplaterApi.RECIPIENT_GROUP_API + `/${id}/recipients`, { headers });
   }
 
+  /**
+   * Currently not used. "editRecipientGroup" is used instead.
+   */
   addRecipientToRecipientGroup(recipientGroupId: number, recipientId: number): Observable<Array<RecipientResource>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     return this.httpClient.post<Array<RecipientResource>>(EmailTemplaterApi.RECIPIENT_GROUP_API + `/${recipientGroupId}/recipients/${recipientId}`, null, { headers });
   }
 
+  /**
+   * Currently not used. "editRecipientGroup" is used instead.
+   */
   removeRecipientFromRecipientGroup(recipientGroupId: number, recipientId: number): Observable<Array<RecipientResource>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     return this.httpClient.delete<Array<RecipientResource>>(EmailTemplaterApi.RECIPIENT_GROUP_API + `/${recipientGroupId}/recipients/${recipientId}`, { headers });

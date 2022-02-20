@@ -21,13 +21,15 @@ import { RecipientGroupsDashboardRoutingModule } from './recipient-groups-dashbo
 import { RecipientGroupDetailsComponent } from './recipient-group-details/recipient-group-details.component';
 import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
 import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipient-group.component';
+import { DeleteRecipientGroupComponent } from './delete-recipient-group/delete-recipient-group.component';
 
 @NgModule({
   declarations: [
     ViewRecipientGroupsComponent,
     RecipientGroupDetailsComponent,
     CreateRecipientGroupComponent,
-    EditRecipientGroupComponent
+    EditRecipientGroupComponent,
+    DeleteRecipientGroupComponent
   ],
   imports: [
     CommonModule,

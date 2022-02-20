@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
 import { RecipientGroupService } from 'src/services/recipient-group.service';
 import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
+import { DeleteRecipientGroupComponent } from './delete-recipient-group/delete-recipient-group.component';
 import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipient-group.component';
 
 @Component({
@@ -16,7 +17,7 @@ import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipie
 export class ViewRecipientGroupsComponent implements OnInit {
 
   recipientGroups: Array<RecipientGroupResource> = [];
-  selectedRecipientGroup: RecipientGroupResource;
+  selectedRecipientGroup: RecipientGroupResource | null;
   titleSearchValue: string = '';
 
   constructor(
@@ -70,10 +71,36 @@ export class ViewRecipientGroupsComponent implements OnInit {
         this.fetchRecipientGroups();
       }
     });
+
+    /* Update selected recipient group to refresh data */
+    // TODO
   }
 
   onDeleteRecipientGroup(recipientGroupResource: RecipientGroupResource): void {
+    const dialogRef = this.dialog.open(DeleteRecipientGroupComponent, {
+      data: { recipientGroupResource: recipientGroupResource },
+      disableClose: true,
+      width: '500px',
+      minHeight: 200,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, deletedRecipientGroupId }) => {
+      if (!cancelClicked) {
+        const message = success ? "Recipient group deleted successfully!" : "ERROR when deleting recipient group!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
+
+        this.fetchRecipientGroups();
+
+        /* If the deleted recipient group was the selected one, then reset the selection. */
+        if (success && deletedRecipientGroupId && (deletedRecipientGroupId === this.selectedRecipientGroup?.id)) {
+          this.selectedRecipientGroup = null;
+        }
+      }
+    });
   }
 
   onSelectRecipientGroup(recipientGroupResource: RecipientGroupResource): void {    
