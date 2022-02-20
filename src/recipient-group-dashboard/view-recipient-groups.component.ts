@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
 import { RecipientGroupService } from 'src/services/recipient-group.service';
 import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
+import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipient-group.component';
 
 @Component({
   selector: 'app-view-recipient-groups',
@@ -48,7 +51,25 @@ export class ViewRecipientGroupsComponent implements OnInit {
   }
 
   onEditRecipientGroup(recipientGroupResource: RecipientGroupResource): void {
+    const dialogRef = this.dialog.open(EditRecipientGroupComponent, {
+      data: { recipientGroupResource: recipientGroupResource },
+      disableClose: true,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+      if (!cancelClicked) {
+        const message = success ? "Recipient group edited successfully!" : "ERROR when editing recipient group!";
+        this.snackbar.open(message, undefined, {
+          duration: 3000
+        });
+
+        this.fetchRecipientGroups();
+      }
+    });
   }
 
   onDeleteRecipientGroup(recipientGroupResource: RecipientGroupResource): void {

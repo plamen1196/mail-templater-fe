@@ -38,4 +38,12 @@ export class UtilService {
 
     return arr.join(',');
   }
+
+  buildArrayFromCommaSeparatedString(val: string): Array<number> {
+    if (!val) {
+      return [];
+    }
+
+    return val.split(',').map(singleValue => parseInt(singleValue, 10));
+  }
 }

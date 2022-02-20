@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -11,11 +11,11 @@ import { RecipientService } from 'src/services/recipient.service';
 import { UtilService } from 'src/services/util.service';
 
 @Component({
-  selector: 'app-create-recipient-group',
-  templateUrl: './create-recipient-group.component.html',
-  styleUrls: ['./create-recipient-group.component.scss']
+  selector: 'app-edit-recipient-group',
+  templateUrl: './edit-recipient-group.component.html',
+  styleUrls: ['./edit-recipient-group.component.scss']
 })
-export class CreateRecipientGroupComponent implements OnInit {
+export class EditRecipientGroupComponent implements OnInit {
 
   formGroup: FormGroup;
   recipients: Array<RecipientResource> = [];
@@ -23,8 +23,8 @@ export class CreateRecipientGroupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {},
-    private dialogRef: MatDialogRef<CreateRecipientGroupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { recipientGroupResource: RecipientGroupResource },
+    private dialogRef: MatDialogRef<EditRecipientGroupComponent>,
     private recipientService: RecipientService,
     private recipientGroupService: RecipientGroupService,
     private utilService: UtilService) {
@@ -36,13 +36,15 @@ export class CreateRecipientGroupComponent implements OnInit {
     this.fetchAllRecipients();
   }
 
-  onCreateRecipientGroup(): void {
+  onSaveRecipientGroup(): void {
     const recipientGroupResource = new RecipientGroupResource();
+    const id = this.data.recipientGroupResource.id;
+
     recipientGroupResource.title = this.formGroup.controls['title'].value;
     recipientGroupResource.recipientIds =
       this.utilService.buildCommaSeparatedString(this.formGroup.controls['groupRecipients'].value);
 
-    this.recipientGroupService.createRecipientGroup(recipientGroupResource).subscribe(
+    this.recipientGroupService.editRecipientGroup(id, recipientGroupResource).subscribe(
       (response: RecipientGroupResource) => { this.handleSucces(response); },
       (response: HttpErrorResponse) => { this.handleFailure(response); }
     );
@@ -59,8 +61,9 @@ export class CreateRecipientGroupComponent implements OnInit {
   private generateForm(): FormGroup {
     const form: FormGroup = this.formBuilder.group({});
 
-    form.addControl('title', new FormControl('', [Validators.required]));
-    form.addControl('groupRecipients', new FormControl(''));
+    form.addControl('title', new FormControl(this.data.recipientGroupResource.title));
+    form.addControl('groupRecipients', new FormControl(
+      this.utilService.buildArrayFromCommaSeparatedString(this.data.recipientGroupResource.recipientIds)));
 
     return form;
   }
@@ -76,6 +79,11 @@ export class CreateRecipientGroupComponent implements OnInit {
   private fetchAllRecipients(): void {
     this.recipientService.getRecipients().subscribe((recipients: Array<RecipientResource>) => {
       this.recipients = recipients;
-    });
+
+      /* Populate initial chips recipients. */
+      this.chipsRecipients = this.utilService.getRecipientResourcesFromIds(
+        this.recipients,
+        this.utilService.buildArrayFromCommaSeparatedString(this.data.recipientGroupResource.recipientIds));
+    });  
   }
 }

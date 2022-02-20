@@ -1,12 +1,13 @@
 <h2 mat-dialog-title>
-    New recipient group
+    Edit recipient group
+    <mat-icon>edit</mat-icon>
 </h2>
 
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="formGroup" name="formGroup">
         <mat-form-field>
             <mat-label>Recipient group title</mat-label>
-            <mat-hint>Unique identifier, e.g. "friends"</mat-hint>
+            <mat-hint>Unique identifier</mat-hint>
             <input matInput
                    required
                    [formControlName]="'title'"
@@ -14,7 +15,6 @@
         </mat-form-field>
         <mat-form-field class="recipients-form-field">
             <mat-label>Recipient group recipients</mat-label>
-            <mat-hint>Check all recipients that will be included in the group</mat-hint>
             <mat-select [formControlName]="'groupRecipients'" (selectionChange)="onGroupRecipientsSelectionChange($event)" multiple>
                 <mat-option *ngFor="let recipient of recipients" [value]="recipient.id">{{ recipient.email }}</mat-option>
             </mat-select>
@@ -35,7 +35,7 @@
     <button mat-raised-button
             color="primary"
             [disabled]="formGroup.invalid"
-            (click)="onCreateRecipientGroup()">
-        Create
+            (click)="onSaveRecipientGroup()">
+        Save
     </button>
 </mat-dialog-actions>

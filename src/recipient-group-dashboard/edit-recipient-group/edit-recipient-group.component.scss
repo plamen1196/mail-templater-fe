@@ -1,0 +1,39 @@
+:host {
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+
+    mat-icon {
+        margin-left: 8px;
+    }
+}
+
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+mat-form-field {
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.recipients-form-field {
+    margin-top: 16px;
+}
+
+mat-chip-list {
+    margin-top: 16px;
+    max-height: 200px;
+}
+
+.actions {
+    justify-content: space-between;
+}

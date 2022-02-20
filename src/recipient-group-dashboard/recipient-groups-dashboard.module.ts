@@ -20,12 +20,14 @@ import { UtilModule } from 'src/util/util.module';
 import { RecipientGroupsDashboardRoutingModule } from './recipient-groups-dashboard-routing.module';
 import { RecipientGroupDetailsComponent } from './recipient-group-details/recipient-group-details.component';
 import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
+import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipient-group.component';
 
 @NgModule({
   declarations: [
     ViewRecipientGroupsComponent,
     RecipientGroupDetailsComponent,
-    CreateRecipientGroupComponent
+    CreateRecipientGroupComponent,
+    EditRecipientGroupComponent
   ],
   imports: [
     CommonModule,

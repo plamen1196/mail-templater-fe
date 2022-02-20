@@ -29,7 +29,7 @@ export class RecipientGroupService {
     return this.httpClient.delete<any>(EmailTemplaterApi.DELETE_RECIPIENT_GROUP + `${id}`, { headers });
   }
 
-  editRecipient(id: number, recipientGroupResource: RecipientGroupResource): Observable<RecipientGroupResource> {
+  editRecipientGroup(id: number, recipientGroupResource: RecipientGroupResource): Observable<RecipientGroupResource> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     return this.httpClient.patch<any>(EmailTemplaterApi.PATCH_RECIPIENT_GROUP + `${id}`, recipientGroupResource, { headers });
   }
