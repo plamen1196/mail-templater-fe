@@ -32,6 +32,9 @@
         <h2 class="mat-h2">
             Showing: <strong>{{ historyRecordsHeading }}</strong>
         </h2>
+        <h2 class="mat-h2">
+            Records count: <strong>{{ historyRecordsCount }}</strong>
+        </h2>
         <ng-container *ngIf="sentEmails!.length else empty">
             <mat-card *ngFor="let sentEmail of sentEmails">
                 <mat-card-title>

@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SentEmailResource } from 'src/models/sent-email-resource';
 import { EmailService } from 'src/services/email.service';
+import { UtilService } from 'src/services/util.service';
 
 @Component({
   selector: 'app-history',
@@ -16,12 +17,15 @@ export class HistoryComponent {
 
   formGroup: FormGroup;
   sentEmails: Array<SentEmailResource> = [];
+  
   historyRecordsHeading: string = '';
+  historyRecordsCount: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
     private emailService: EmailService,
-    private snackbar: MatSnackBar) {
+    private snackbar: MatSnackBar,
+    private utilService: UtilService) {
     this.formGroup = this.generateForm();
     this.historyRecordsHeading = 'No matching records';
   }
@@ -37,27 +41,29 @@ export class HistoryComponent {
   onSubmitDateRange(): void {
     const startDate: Date = this.formGroup.controls['startDate'].value;
     const endDate: Date = this.formGroup.controls['endDate'].value;
+    const zonedStartDate = this.utilService.buildDateIsoString(startDate);
+    const zonedEndDate = this.utilService.buildDateIsoString(endDate);
 
-    if (!startDate && !endDate) {
+    if (!zonedStartDate && !zonedEndDate) {
       return;
     }
 
-    if (startDate && endDate) {
+    if (zonedStartDate && zonedEndDate) {
       this.historyRecordsHeading =
-        `History between ${startDate.toLocaleDateString('en-GB')} and ${endDate.toLocaleDateString('en-GB')}`;
+        `History between ${zonedStartDate.toLocaleDateString('en-GB')} and ${zonedEndDate.toLocaleDateString('en-GB')}`;
     }
 
-    if (startDate && !endDate) {
+    if (zonedStartDate && !zonedEndDate) {
       this.historyRecordsHeading =
-        `History after ${startDate.toLocaleDateString('en-GB')}`;
+        `History after ${zonedStartDate.toLocaleDateString('en-GB')}`;
     }
 
-    if (!startDate && endDate) {
+    if (!zonedStartDate && zonedEndDate) {
       this.historyRecordsHeading =
-        `History before ${endDate.toLocaleDateString('en-GB')}`;
+        `History before ${zonedEndDate.toLocaleDateString('en-GB')}`;
     }
 
-    this.emailService.getHistory(startDate, endDate).subscribe(
+    this.emailService.getHistory(zonedStartDate, zonedEndDate).subscribe(
       (response: Array<SentEmailResource>) => { this.handleSucces(response); },
       (response: HttpErrorResponse) => { this.handleFailure(response); }
     );
@@ -74,6 +80,7 @@ export class HistoryComponent {
 
   private handleSucces(response: Array<SentEmailResource>): void {
     this.sentEmails = response;
+    this.historyRecordsCount = this.sentEmails?.length || 0;
   }
 
   private handleFailure(response: HttpErrorResponse): void {

@@ -6,6 +6,8 @@ import { RecipientResource } from 'src/models/recipients/recipient-resource';
 })
 export class UtilService {
 
+  private readonly SIXTY_SECONDS_IN_MILLIS = 60000;
+
   extractPlaceholders(message: string): Array<string> {
     /* Get all substrings starting with "%(" and ending with ")" */
     let regexResult = message.match(/%\(.*?\)/gm);
@@ -45,5 +47,13 @@ export class UtilService {
     }
 
     return val.split(',').map(singleValue => parseInt(singleValue, 10));
+  }
+
+  buildDateIsoString(date: Date): Date | undefined {
+    if (!date) {
+      return undefined;
+    }
+
+    return new Date(date.getTime() - date.getTimezoneOffset() * this.SIXTY_SECONDS_IN_MILLIS);
   }
 }
