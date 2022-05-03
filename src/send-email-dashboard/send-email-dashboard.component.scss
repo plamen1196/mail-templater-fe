@@ -30,18 +30,14 @@
             @include flex-column-centered();
 
             margin-top: 16px;
+        }
 
-            // .selected-template-card {
-            //     margin-bottom: 16px;
-            //     min-width: 160px;
-            //     min-height: 50px;
-            //     max-height: 100px;
+        .recipients-selector-container {
+            @include flex-row-centered();
 
-            //     &-empty {
-            //         margin-bottom: 16px;
-            //         font-style: italic;
-            //     }
-            // }
+            button {
+                margin: 8px;
+            }
         }
 
     }

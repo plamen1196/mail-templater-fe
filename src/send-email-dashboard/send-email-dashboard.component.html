@@ -10,8 +10,19 @@
 
     <mat-divider></mat-divider>
 
-    <div class="recipients-supplier-container">
-        
+    <div class="recipients-selector-container">
+        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
+            <mat-icon>people</mat-icon>
+            Add recipient group
+        </button>
+        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
+            <mat-icon>person</mat-icon>
+            Add recipient
+        </button>
+        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
+            <mat-icon>person</mat-icon>
+            Add custom recipient
+        </button>
     </div>
 
     <div class="email-box-container">
