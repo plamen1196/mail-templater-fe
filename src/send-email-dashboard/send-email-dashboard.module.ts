@@ -10,16 +10,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { SendEmailDashboardComponent } from './send-email-dashboard.component';
 import { SendEmailDashboardRoutingModule } from './send-email-dashboard-routing.module';
 import { UtilModule } from 'src/util/util.module';
 import { TemplateSelectorComponent } from './template-selector/template-selector.component';
+import { TemplatesListComponent } from './templates-list/templates-list.component';
 
 @NgModule({
   declarations: [
     SendEmailDashboardComponent,
-    TemplateSelectorComponent
+    TemplateSelectorComponent,
+    TemplatesListComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,9 @@ import { TemplateSelectorComponent } from './template-selector/template-selector
     MatInputModule,
     MatChipsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    UtilModule
   ]
 })
 export class SendEmailDashboardModule { }

@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>
+    Select template
+    <mat-icon>draw</mat-icon>
+    <mat-form-field class="seach-field">
+        <mat-label>Search by title</mat-label>
+        <input matInput [(ngModel)]="titleSearchValue">
+    </mat-form-field>
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <ng-container *ngIf="emailTemplates!.length else empty">
+        <div class="cards">
+            <mat-card
+            class="card"
+            [class.selected]="selectedTemplate === emailTemplate"
+            *ngFor="let emailTemplate of emailTemplates | searchTemplate: titleSearchValue"
+            (click)="onClickTemplate(emailTemplate)">
+                <mat-card-header>
+                    <mat-card-title>{{ emailTemplate.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{ emailTemplate.message }}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+    <button mat-raised-button
+            color="accent"
+            (click)="onCancel()">
+        Cancel
+    </button>
+    <button mat-raised-button
+            color="primary"
+            [disabled]="!selectedTemplate"
+            (click)="onSubmitSelection()">
+        Select
+    </button>
+</mat-dialog-actions>
+
+<ng-template #empty>
+    <h4 class="mat-h4 title">
+        No templates :(
+    </h4>
+</ng-template>

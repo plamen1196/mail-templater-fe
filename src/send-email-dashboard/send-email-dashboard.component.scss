@@ -6,11 +6,11 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
+    padding: 16px;
 
     .container {
         @include flex-column-centered();
-
-        padding: 16px;
+        width: 100%;
 
         h1 {
             display: flex;
@@ -21,22 +21,27 @@
             }
         }
 
+        mat-divider {
+            width: 100%;
+            margin: 16px 0;
+        }
+
         .template-selector-container {
             @include flex-column-centered();
 
             margin-top: 16px;
 
-            .selected-template-card {
-                margin-bottom: 16px;
-                min-width: 160px;
-                min-height: 50px;
-                max-height: 100px;
+            // .selected-template-card {
+            //     margin-bottom: 16px;
+            //     min-width: 160px;
+            //     min-height: 50px;
+            //     max-height: 100px;
 
-                &-empty {
-                    margin-bottom: 16px;
-                    font-style: italic;
-                }
-            }
+            //     &-empty {
+            //         margin-bottom: 16px;
+            //         font-style: italic;
+            //     }
+            // }
         }
 
     }

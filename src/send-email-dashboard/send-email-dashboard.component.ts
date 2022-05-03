@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { EmailTemplate } from 'src/models/templates/email-template';
 
 @Component({
@@ -13,10 +14,11 @@ export class SendEmailDashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
-  onSelectTemplate(): void {
-    
+  onSelectedTemplateChange(emailTemplate: EmailTemplate): void {
+    this.selectedTemplate = emailTemplate;
   }
 
 }

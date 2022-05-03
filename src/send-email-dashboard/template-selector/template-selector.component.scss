@@ -1,0 +1,24 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/_variables.scss';
+
+:host {
+    @include flex-column-centered();
+
+    label {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .selected-template-card {
+        margin-bottom: 16px;
+        min-width: 160px;
+        min-height: 50px;
+        max-height: 100px;
+
+        &-empty {
+            min-width: 160px;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+    }
+}

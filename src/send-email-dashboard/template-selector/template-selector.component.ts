@@ -1,30 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { MatDialog } from '@angular/material/dialog';
-import { TemplateService } from 'src/services/template.service';
+
+import { TemplatesListComponent } from '../templates-list/templates-list.component';
+import { SelectTemplateResult } from 'src/models/dialogs/select-template-result';
 
 @Component({
   selector: 'app-template-selector',
   templateUrl: './template-selector.component.html',
   styleUrls: ['./template-selector.component.scss']
 })
-export class TemplateSelectorComponent implements OnInit {
+export class TemplateSelectorComponent {
 
-  emailTemplates: Array<EmailTemplate> = [];
-  titleSearchValue: string = '';
+  selectedTemplate: EmailTemplate;
 
-  constructor(
-    private dialog: MatDialog,
-    private templateService: TemplateService) { }
+  @Output()
+  readonly selectedTemplateChange: EventEmitter<EmailTemplate> = new EventEmitter();
 
-  ngOnInit(): void {
-    this.fetchTemplates();
-  }
+  constructor(private dialog: MatDialog) { }
 
-  private fetchTemplates(): void {
-    this.templateService.getTemplates().subscribe((response: Array<EmailTemplate>) => {
-      this.emailTemplates = response;
+  onSelectTemplate(): void {
+    const dialogRef = this.dialog.open(TemplatesListComponent, {
+      data: {},
+      disableClose: false,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((selectedTemplateResult: SelectTemplateResult) => {
+      if (!selectedTemplateResult || selectedTemplateResult.cancelClicked) {
+        return;
+      }
+
+      this.selectedTemplate = selectedTemplateResult.selectedTemplate;
+      this.selectedTemplateChange.emit(this.selectedTemplate);
     });
   }
 }
