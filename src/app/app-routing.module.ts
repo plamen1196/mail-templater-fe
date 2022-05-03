@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'history',
     loadChildren: () => import('../history/history.module').then(m => m.HistoryModule)
+  },
+  {
+    path: 'send-emails',
+    loadChildren: () => import('../send-email-dashboard/send-email-dashboard.module').then(m => m.SendEmailDashboardModule)
   }
 ];
 

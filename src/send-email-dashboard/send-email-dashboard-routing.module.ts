@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ViewTemplatesComponent } from './view-templates.component';
+import { SendEmailDashboardComponent } from './send-email-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ViewTemplatesComponent
+    component: SendEmailDashboardComponent
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TemplateDashboardRoutingModule { }
+export class SendEmailDashboardRoutingModule { }
