@@ -1,0 +1,28 @@
+<ng-container *ngIf="emailTemplates!.length else empty">
+    <div class="cards">
+        <mat-card class="card" *ngFor="let emailTemplate of emailTemplates | searchTemplate: titleSearchValue">
+            <mat-card-header>
+                <mat-card-title>{{ emailTemplate.title }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    {{ emailTemplate.message }}
+                </p>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <button mat-icon-button (click)="onDeleteTemplate(emailTemplate)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button (click)="onEditTemplate(emailTemplate)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-card-actions> -->
+        </mat-card>
+    </div>
+</ng-container>
+
+<ng-template #empty>
+    <h4 class="mat-h4 title">
+        No templates :(
+    </h4>
+</ng-template>

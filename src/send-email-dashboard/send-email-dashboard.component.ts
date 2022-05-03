@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailTemplate } from 'src/models/templates/email-template';
 
 @Component({
   selector: 'app-send-email-dashboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendEmailDashboardComponent implements OnInit {
 
+  selectedTemplate: EmailTemplate;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSelectTemplate(): void {
+    
   }
 
 }

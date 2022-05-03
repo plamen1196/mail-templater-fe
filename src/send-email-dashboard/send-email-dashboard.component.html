@@ -5,7 +5,24 @@
     </h1>
 
     <div class="template-selector-container">
+        <mat-card *ngIf="selectedTemplate" class="selected-template-card">
+            <mat-card-header>
+                <mat-card-title>{{ selectedTemplate.title }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    {{ selectedTemplate.message }}
+                </p>
+            </mat-card-content>
+        </mat-card>
 
+        <mat-card *ngIf="!selectedTemplate" class="selected-template-card-empty">
+            Select a template to see its details
+        </mat-card>
+
+        <button mat-raised-button color="primary" (click)="onSelectTemplate()">
+            Select a template
+        </button>
     </div>
 
     <div class="recipients-supplier-container">

@@ -20,18 +20,22 @@
                 margin-right: 8px;
             }
         }
-        
-        .heading-container {
-            @include flex-row-centered();
 
-            .separator {
-                margin: 0 16px 0 16px;
-            }
+        .template-selector-container {
+            @include flex-column-centered();
 
-            .seach-field {
-                display: flex;
-                align-items: flex-start;
-                margin-top: 16px;
+            margin-top: 16px;
+
+            .selected-template-card {
+                margin-bottom: 16px;
+                min-width: 160px;
+                min-height: 50px;
+                max-height: 100px;
+
+                &-empty {
+                    margin-bottom: 16px;
+                    font-style: italic;
+                }
             }
         }
 

@@ -14,10 +14,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SendEmailDashboardComponent } from './send-email-dashboard.component';
 import { SendEmailDashboardRoutingModule } from './send-email-dashboard-routing.module';
 import { UtilModule } from 'src/util/util.module';
+import { TemplateSelectorComponent } from './template-selector/template-selector.component';
 
 @NgModule({
   declarations: [
-    SendEmailDashboardComponent
+    SendEmailDashboardComponent,
+    TemplateSelectorComponent
   ],
   imports: [
     CommonModule,
