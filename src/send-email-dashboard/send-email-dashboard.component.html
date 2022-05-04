@@ -11,18 +11,9 @@
     <mat-divider></mat-divider>
 
     <div class="recipients-selector-container">
-        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
-            <mat-icon>people</mat-icon>
-            Add recipient group
-        </button>
-        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
-            <mat-icon>person</mat-icon>
-            Add recipient
-        </button>
-        <button mat-raised-button color="accent" [disabled]="!selectedTemplate">
-            <mat-icon>person</mat-icon>
-            Add custom recipient
-        </button>
+        <app-recipient-groups-selector [disabled]="!selectedTemplate"></app-recipient-groups-selector>
+        <app-recipient-selector [disabled]="!selectedTemplate"></app-recipient-selector>
+        <app-custom-recipient-selector [disabled]="!selectedTemplate"></app-custom-recipient-selector>
     </div>
 
     <div class="email-box-container">

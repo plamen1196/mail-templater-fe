@@ -28,16 +28,12 @@
 
         .template-selector-container {
             @include flex-column-centered();
-
             margin-top: 16px;
         }
 
         .recipients-selector-container {
-            @include flex-row-centered();
-
-            button {
-                margin: 8px;
-            }
+            @include flex-column-centered();
+            align-items: flex-start;
         }
 
     }

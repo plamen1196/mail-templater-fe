@@ -17,12 +17,18 @@ import { SendEmailDashboardRoutingModule } from './send-email-dashboard-routing.
 import { UtilModule } from 'src/util/util.module';
 import { TemplateSelectorComponent } from './template-selector/template-selector.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
+import { RecipientGroupsSelectorComponent } from './recipient-groups-selector/recipient-groups-selector.component';
+import { RecipientSelectorComponent } from './recipient-selector/recipient-selector.component';
+import { CustomRecipientSelectorComponent } from './custom-recipient-selector/custom-recipient-selector.component';
 
 @NgModule({
   declarations: [
     SendEmailDashboardComponent,
     TemplateSelectorComponent,
-    TemplatesListComponent
+    TemplatesListComponent,
+    RecipientGroupsSelectorComponent,
+    RecipientSelectorComponent,
+    CustomRecipientSelectorComponent
   ],
   imports: [
     CommonModule,
