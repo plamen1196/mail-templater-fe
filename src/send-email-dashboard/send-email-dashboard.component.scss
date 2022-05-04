@@ -31,11 +31,17 @@
             margin-top: 16px;
         }
 
-        .recipients-selector-container {
-            @include flex-column-centered();
-            align-items: flex-start;
+        .email-wrapper {
+            @include flex-row-centered();
+
+            .email-sender-container {
+
+            }
+
+            .recipients-selector-container {
+                @include flex-column-centered();
+                align-items: flex-start;
+            }
         }
-
     }
-
 }

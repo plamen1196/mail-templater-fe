@@ -20,6 +20,7 @@ import { TemplatesListComponent } from './templates-list/templates-list.componen
 import { RecipientGroupsSelectorComponent } from './recipient-groups-selector/recipient-groups-selector.component';
 import { RecipientSelectorComponent } from './recipient-selector/recipient-selector.component';
 import { CustomRecipientSelectorComponent } from './custom-recipient-selector/custom-recipient-selector.component';
+import { EmailSenderComponent } from './email-sender/email-sender.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CustomRecipientSelectorComponent } from './custom-recipient-selector/cu
     TemplatesListComponent,
     RecipientGroupsSelectorComponent,
     RecipientSelectorComponent,
-    CustomRecipientSelectorComponent
+    CustomRecipientSelectorComponent,
+    EmailSenderComponent
   ],
   imports: [
     CommonModule,

@@ -10,17 +10,15 @@
 
     <mat-divider></mat-divider>
 
-    <div class="recipients-selector-container">
-        <app-recipient-groups-selector [disabled]="!selectedTemplate"></app-recipient-groups-selector>
-        <app-recipient-selector [disabled]="!selectedTemplate"></app-recipient-selector>
-        <app-custom-recipient-selector [disabled]="!selectedTemplate"></app-custom-recipient-selector>
-    </div>
+    <div class="email-wrapper">
+        <div class="email-sender-container">
+            <app-email-sender></app-email-sender>
+        </div>
 
-    <div class="email-box-container">
-
-    </div>
-
-    <div class="email-sender-container">
-
+        <div class="recipients-selector-container">
+            <app-recipient-groups-selector [disabled]="!selectedTemplate"></app-recipient-groups-selector>
+            <app-recipient-selector [disabled]="!selectedTemplate"></app-recipient-selector>
+            <app-custom-recipient-selector [disabled]="!selectedTemplate"></app-custom-recipient-selector>
+        </div>
     </div>
 </div>

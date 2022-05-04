@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
+import { Recipient } from 'src/models/recipient';
 
 @Component({
   selector: 'app-send-email-dashboard',
@@ -10,6 +11,7 @@ import { EmailTemplate } from 'src/models/templates/email-template';
 export class SendEmailDashboardComponent implements OnInit {
 
   selectedTemplate: EmailTemplate;
+  recipients: Array<Recipient> = [];
 
   constructor() { }
 
@@ -18,7 +20,9 @@ export class SendEmailDashboardComponent implements OnInit {
   }
 
   onSelectedTemplateChange(emailTemplate: EmailTemplate): void {
-    this.selectedTemplate = emailTemplate;
+    if (this.selectedTemplate !== emailTemplate) {
+      this.selectedTemplate = emailTemplate;
+      this.recipients = [];
+    }
   }
-
 }
