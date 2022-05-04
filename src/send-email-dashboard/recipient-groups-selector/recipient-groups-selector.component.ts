@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
+import { MatDialog } from '@angular/material/dialog';
+
+import { RecipientGroupsListComponent } from '../recipient-groups-list/recipient-groups-list.component';
+import { SelectRecipientGroupsResult } from 'src/models/dialogs/select-recipient-groups-result';
+import { EmailStateService } from 'src/services/email-state.service';
 
 @Component({
   selector: 'app-recipient-groups-selector',
@@ -13,16 +17,31 @@ export class RecipientGroupsSelectorComponent implements OnInit {
   disabled: boolean;
 
   constructor(
-    private recipientGroupService: RecipientGroupResource) { }
+    private dialog: MatDialog,
+    private emailStateService: EmailStateService) { }
 
   ngOnInit(): void {
   }
 
   onAddRecipientGroupsToRecipients(): void {
-    // dialog.open()
+    const dialogRef = this.dialog.open(RecipientGroupsListComponent, {
+      data: {},
+      disableClose: false,
+      width: '700px',
+      minHeight: 500,
+      maxHeight: 800,
+      autoFocus: false
+    });
 
-    // dialog.afterClosed().then (
-    //     if (!recipientGroups || recipientGroups.length) {
-    // return;)
+    dialogRef.afterClosed().subscribe((selectRecipientGroupsResult: SelectRecipientGroupsResult) => {
+      if (!selectRecipientGroupsResult
+          || !selectRecipientGroupsResult.selectedRecipientGroups
+          || !selectRecipientGroupsResult.selectedRecipientGroups.length
+          || selectRecipientGroupsResult.cancelClicked) {
+        return;
+      }
+
+      // update recipients
+    });
   }
 }

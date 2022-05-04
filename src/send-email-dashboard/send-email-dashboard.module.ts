@@ -11,6 +11,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 import { SendEmailDashboardComponent } from './send-email-dashboard.component';
 import { SendEmailDashboardRoutingModule } from './send-email-dashboard-routing.module';
@@ -21,6 +24,7 @@ import { RecipientGroupsSelectorComponent } from './recipient-groups-selector/re
 import { RecipientSelectorComponent } from './recipient-selector/recipient-selector.component';
 import { CustomRecipientSelectorComponent } from './custom-recipient-selector/custom-recipient-selector.component';
 import { EmailSenderComponent } from './email-sender/email-sender.component';
+import { RecipientGroupsListComponent } from './recipient-groups-list/recipient-groups-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { EmailSenderComponent } from './email-sender/email-sender.component';
     RecipientGroupsSelectorComponent,
     RecipientSelectorComponent,
     CustomRecipientSelectorComponent,
-    EmailSenderComponent
+    EmailSenderComponent,
+    RecipientGroupsListComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +52,9 @@ import { EmailSenderComponent } from './email-sender/email-sender.component';
     MatDialogModule,
     MatSnackBarModule,
     MatDividerModule,
+    MatListModule,
+    MatSelectModule,
+    MatOptionModule,
     UtilModule
   ]
 })

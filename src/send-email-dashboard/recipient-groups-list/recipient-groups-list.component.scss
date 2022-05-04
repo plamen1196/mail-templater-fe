@@ -1,0 +1,10 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/variables';
+
+:host {
+
+    .search-field {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
