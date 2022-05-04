@@ -4,31 +4,9 @@
 </h2>
 
 <mat-dialog-content class="mat-typography">
-    <!-- <div class="cards">
-        <mat-card class="card" *ngFor="let recipientGroup of recipientGroups | searchRecipientGroup: titleSearchValue">
-            <mat-card-header>
-                <mat-icon mat-card-avatar>people</mat-icon>
-                <mat-card-title>{{ recipientGroup.title }}</mat-card-title>
-            </mat-card-header>
-        </mat-card>
-    </div> -->
-
-    <!-- <mat-selection-list #recipientGroupsList>
-        <mat-list-option *ngFor="let recipientGroup of recipientGroups | searchRecipientGroup: titleSearchValue">
-            <mat-icon mat-list-icon>people</mat-icon>
-            <div>
-                {{ recipientGroup.title }}
-            </div>
-        </mat-list-option>
-    </mat-selection-list>
-
-    <p *ngFor="let selectedOption of recipientGroupsList.selectedOptions.selected">
-       {{ selectedOption }}
-    </p> -->
-
-    <mat-form-field class="recipients-form-field">
-        <mat-label>Recipient groups</mat-label>
-        <mat-select [(value)]="selectedRecipientGroup" (selectionChange)="onGroupRecipientsSelectionChange($event)" >
+    <mat-form-field class="recipient-groups-form-field">
+        <mat-hint>Select a recipient group to populate email info for its recipients</mat-hint>
+        <mat-select (selectionChange)="onRecipientGroupSelectionChange($event)">
             <mat-option *ngFor="let recipientGroup of recipientGroups" [value]="recipientGroup">{{ recipientGroup.title }}</mat-option>
         </mat-select>
     </mat-form-field>
@@ -47,9 +25,3 @@
         Select
     </button> -->
 </mat-dialog-actions>
-
-<!-- <ng-template #empty>
-    <h4 class="mat-h4 title">
-        No recipient groups :(
-    </h4>
-</ng-template> -->

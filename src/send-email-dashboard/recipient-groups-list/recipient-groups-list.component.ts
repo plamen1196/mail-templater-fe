@@ -22,10 +22,9 @@ export class RecipientGroupsListComponent implements OnInit {
     this.fetchRecipientGroups();
   }
 
-  onGroupRecipientsSelectionChange(event: { value: RecipientGroupResource }): void {
-    console.log(event.value);
+  onRecipientGroupSelectionChange(event: { value: RecipientGroupResource }): void {
+    this.selectedRecipientGroup = event.value;
   }
-
 
   onSubmitSelection(): void {
   }
