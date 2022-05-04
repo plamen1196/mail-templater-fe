@@ -2,6 +2,15 @@
 @import '../../shared/variables';
 
 :host {
+    h2 {
+        @include flex-row-centered();
+        justify-content: flex-start;
+
+        mat-icon {
+            margin-left: 8px;
+        }
+    }
+
     .recipient-groups-form-field {
         width: 100%;
     }
