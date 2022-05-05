@@ -33,7 +33,7 @@ export class EmailStateService {
       .pipe(take(1))
       .subscribe((recipients: Array<Recipient>) => {
         const updatedRecipients = recipients.concat(newRecipients);
-
+        console.log(updatedRecipients);
         this.setEmailRecipients(updatedRecipients);
       });
   }

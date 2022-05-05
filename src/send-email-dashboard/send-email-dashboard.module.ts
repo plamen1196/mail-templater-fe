@@ -23,7 +23,6 @@ import { TemplateSelectorComponent } from './template-selector/template-selector
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { RecipientGroupsSelectorComponent } from './recipient-groups-selector/recipient-groups-selector.component';
 import { RecipientSelectorComponent } from './recipient-selector/recipient-selector.component';
-import { CustomRecipientSelectorComponent } from './custom-recipient-selector/custom-recipient-selector.component';
 import { EmailSenderComponent } from './email-sender/email-sender.component';
 import { RecipientGroupsListComponent } from './recipient-groups-list/recipient-groups-list.component';
 import { RecipientsListComponent } from './recipients-list/recipients-list.component';
@@ -35,7 +34,6 @@ import { RecipientsListComponent } from './recipients-list/recipients-list.compo
     TemplatesListComponent,
     RecipientGroupsSelectorComponent,
     RecipientSelectorComponent,
-    CustomRecipientSelectorComponent,
     EmailSenderComponent,
     RecipientGroupsListComponent,
     RecipientsListComponent
