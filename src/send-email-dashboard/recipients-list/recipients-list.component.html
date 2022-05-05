@@ -8,12 +8,20 @@
 <mat-dialog-content class="mat-typography">
     <h4 class="hint">
         <mat-icon>info</mat-icon>
-        Please select recipient(s) and fill-in the details for each recipient in TSV format.
-        The fields for each row must keep their original order.
+        <div>
+            <div>
+                Please select recipient(s) and fill-in the details for each recipient in TSV format.
+                The fields for each row must keep their original order.
+            </div>
+        <div>
+            <strong>Custom</strong> recipients can also be added to the TSV data by following the same pattern.
+        </div>
+    </div>
     </h4>
 
     <mat-form-field class="recipients-form-field">
         <mat-label>Recipients</mat-label>
+        <mat-hint>All changes to the selection list will override the current state of the TSV data.</mat-hint>
         <mat-select (selectionChange)="onRecipientsSelectionChange($event)" required multiple>
             <mat-option *ngFor="let recipient of recipients" [value]="recipient">{{ recipient.email }}</mat-option>
         </mat-select>
