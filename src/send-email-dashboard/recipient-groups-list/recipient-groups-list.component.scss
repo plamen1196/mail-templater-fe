@@ -11,7 +11,32 @@
         }
     }
 
-    .recipient-groups-form-field {
-        width: 100%;
+    mat-dialog-content {
+        .hint {
+            display: flex;
+            font-style: italic;
+
+            mat-icon {
+                margin-right: 8px;
+            }
+        }
+
+        .recipient-groups-form-field {
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .recipients-form-field {
+            width: 100%;
+        
+            textarea {
+                min-height: 300px;
+            }
+        }
+    
+        .clipboard-button {
+            display: flex;
+            margin-left: auto;
+        }
     }
 }

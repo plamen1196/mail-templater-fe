@@ -11,7 +11,7 @@ import { EmailTemplate } from 'src/models/templates/email-template';
 export class EmailStateService {
 
   private emailTemplate$ = new BehaviorSubject<EmailTemplate | null>(null);
-  private recipients$ = new BehaviorSubject<Array<Recipient>>([]);
+  private emailRecipients$ = new BehaviorSubject<Array<Recipient>>([]);
 
   constructor() { }
 
@@ -23,11 +23,11 @@ export class EmailStateService {
     this.emailTemplate$.next(emailTemplate);
   }
 
-  getRecipients(): Observable<Array<Recipient>> {
-    return this.recipients$.asObservable();
+  getEmailRecipients(): Observable<Array<Recipient>> {
+    return this.emailRecipients$.asObservable();
   }
 
-  setRecipients(recipients: Array<Recipient>): void {
-    this.recipients$.next(recipients);
+  setEmailRecipients(recipients: Array<Recipient>): void {
+    this.emailRecipients$.next(recipients);
   }
 }

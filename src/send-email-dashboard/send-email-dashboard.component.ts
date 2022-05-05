@@ -33,7 +33,7 @@ export class SendEmailDashboardComponent implements OnInit, OnDestroy {
   onSelectedTemplateChange(emailTemplate: EmailTemplate): void {
     if (this.selectedEmailTemplate !== emailTemplate) {
       this.emailStateService.setEmailTemplate(emailTemplate);
-      this.emailStateService.setRecipients([]);
+      this.emailStateService.setEmailRecipients([]);
     }
   }
 

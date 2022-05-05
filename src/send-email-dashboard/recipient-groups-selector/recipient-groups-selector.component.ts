@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 
 import { RecipientGroupsListComponent } from '../recipient-groups-list/recipient-groups-list.component';
-import { SelectRecipientGroupsResult } from 'src/models/dialogs/select-recipient-groups-result';
+import { SelectRecipientGroupResult } from 'src/models/dialogs/select-recipient-groups-result';
 import { EmailStateService } from 'src/services/email-state.service';
+import { Recipient } from 'src/models/recipient';
 
 @Component({
   selector: 'app-recipient-groups-selector',
@@ -33,15 +36,24 @@ export class RecipientGroupsSelectorComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe((selectRecipientGroupsResult: SelectRecipientGroupsResult) => {
+    dialogRef.afterClosed().subscribe((selectRecipientGroupsResult: SelectRecipientGroupResult) => {
       if (!selectRecipientGroupsResult
-          || !selectRecipientGroupsResult.selectedRecipientGroups
-          || !selectRecipientGroupsResult.selectedRecipientGroups.length
+          || !selectRecipientGroupsResult.recipients?.length
           || selectRecipientGroupsResult.cancelClicked) {
         return;
       }
 
-      // update recipients
+      this.fetchAndUpdateEmailRecipients(selectRecipientGroupsResult.recipients);
     });
+  }
+
+  private fetchAndUpdateEmailRecipients(newRecipients: Array<Recipient>): void {
+    this.emailStateService.getEmailRecipients()
+    .pipe(take(1))
+    .subscribe((recipients: Array<Recipient>) => {
+      const updatedRecipients = recipients.concat(newRecipients);
+
+      this.emailStateService.setEmailRecipients(updatedRecipients);
+    })
   }
 }

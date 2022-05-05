@@ -1,6 +1,6 @@
-import { RecipientGroupResource } from '../recipient-groups/recipient-group-resource';
+import { Recipient } from '../recipient';
 
-export interface SelectRecipientGroupsResult {
-    selectedRecipientGroups: Array<RecipientGroupResource>;
+export interface SelectRecipientGroupResult {
+    recipients: Array<Recipient>;
     cancelClicked: boolean;
 }

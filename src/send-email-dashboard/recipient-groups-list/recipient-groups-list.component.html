@@ -1,30 +1,56 @@
 <h2 mat-dialog-title>
     <span>
-    Add recipients from a group
-
+        Add recipients from a group
     </span>
     <mat-icon>people</mat-icon>
 </h2>
 
 <mat-dialog-content class="mat-typography">
+    <h4 class="hint">
+        <mat-icon>info</mat-icon>
+        Please select a recipient group and fill-in the details for each recipient in TSV format.
+        The fields for each row must keep their original order.
+    </h4>
+
     <mat-form-field class="recipient-groups-form-field">
-        <mat-hint>Select a recipient group to populate email info for its recipients</mat-hint>
-        <mat-select (selectionChange)="onRecipientGroupSelectionChange($event)">
+        <mat-label>Recipient group</mat-label>
+        <mat-select (selectionChange)="onRecipientGroupSelectionChange($event)" required>
             <mat-option *ngFor="let recipientGroup of recipientGroups" [value]="recipientGroup">{{ recipientGroup.title }}</mat-option>
         </mat-select>
     </mat-form-field>
+
+    <mat-form-field class="recipients-form-field">
+        <mat-label>TSV data for the group recipients.</mat-label>
+        <textarea matInput
+                  required
+                  matTextareaAutosize
+                  matAutosizeMaxRows="30"
+                  class="recipients-textarea"
+                  [(ngModel)]="recipientsTsvData"
+                  [disabled]="!selectedRecipientGroup"
+                  (keydown.Tab)="onTabKey($event)">
+        </textarea>
+    </mat-form-field>
+    <button class="clipboard-button"
+            mat-raised-button
+            color="primary"
+            [cdkCopyToClipboard]="recipientsTsvData"
+            [disabled]="clipboardButtonDisabled"
+            (click)="onClipboardButtonClick()">
+        {{ clipboardButtonText }}
+    </button>
 </mat-dialog-content>
 
 <mat-dialog-actions class="actions">
-    <!-- <button mat-raised-button
+    <button mat-raised-button
             color="accent"
             (click)="onCancel()">
         Cancel
     </button>
     <button mat-raised-button
             color="primary"
-            [disabled]="!selectedRecipientGroups || !selectedRecipientGroups.length"
-            (click)="onSubmitSelection()">
+            [disabled]="!selectedRecipientGroup || !recipientsTsvData"
+            (click)="onSubmitRecipients()">
         Select
-    </button> -->
+    </button>
 </mat-dialog-actions>
