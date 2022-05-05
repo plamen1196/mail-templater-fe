@@ -11,13 +11,6 @@
     <mat-divider></mat-divider>
 
     <div class="email-wrapper">
-        <div class="email-sender-container">
-            <app-email-sender></app-email-sender>
-        </div>
-
-        <div class="recipients-selector-container">
-            <app-recipient-groups-selector [disabled]="!selectedEmailTemplate"></app-recipient-groups-selector>
-            <app-recipient-selector [disabled]="!selectedEmailTemplate"></app-recipient-selector>
-        </div>
+        <app-email-sender></app-email-sender>
     </div>
 </div>

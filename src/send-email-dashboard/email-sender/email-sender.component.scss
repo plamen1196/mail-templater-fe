@@ -1,0 +1,64 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/_variables.scss';
+
+:host {
+    padding: 16px;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    mat-card {
+        height: 100%;
+
+        mat-card-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        mat-card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .recipients-selector-container {
+                @include flex-row-centered();
+                align-items: flex-start;
+
+                & * {
+                    margin-right: 8px;
+                }
+            }
+
+            .email-operations-container {
+                @include flex-row-centered();
+            }
+        }
+    }
+
+    mat-form-field {
+        display: block;
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    // ::ng-deep .chips-form-field .mat-form-field-underline {
+    //     display: none;
+    //  }
+
+    .icon {
+        cursor: pointer;
+    }
+
+    .edit-icon {
+        margin-left: 4px;
+    }
+
+    .message-textarea {
+        min-height: 200px;
+    }
+
+    .send-spinner {
+        margin: 4px auto;
+    }
+}

@@ -1,1 +1,68 @@
-<p>email-sender works!</p>
+<mat-card class="card">
+    <mat-card-content>
+        <form>
+            <mat-form-field class="chips-form-field">
+                <mat-label>To</mat-label>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let recipient of recipients"
+                              [removable]="true"
+                              (removed)="removeRecipient(recipient)">
+                        {{ recipient.email }}
+                        <mat-icon (click)="editRecipient(recipient)" class="edit-icon icon">edit</mat-icon>
+                        <mat-icon matChipRemove class="icon">cancel</mat-icon>
+                    </mat-chip>
+                    <input [matChipInputFor]="chipList" [disabled]="true" [matChipInputAddOnBlur]="false">
+                </mat-chip-list>
+                <mat-hint>Recipients are added through the form.</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Subject</mat-label>
+                <input matInput
+                       [value]="emailTemplate?.title"
+                       [disabled]="true">
+            </mat-form-field>
+            <mat-form-field class="message-form-field">
+                <mat-label>Message</mat-label>
+                <textarea matInput
+                          matTextareaAutosize
+                          class="message-textarea"
+                          [value]="emailTemplate?.message"
+                          [disabled]="true"></textarea>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    
+    <mat-card-actions>
+        <div class="recipients-selector-container">
+            <app-recipient-groups-selector [disabled]="!emailTemplate"></app-recipient-groups-selector>
+            <app-recipient-selector [disabled]="!emailTemplate"></app-recipient-selector>
+        </div>
+
+        <div class="email-operations-container">
+            <button mat-raised-button
+                    color="primary"
+                    (click)="preview()"
+                    [disabled]="!recipients?.length || sending">
+                Preview
+            </button>
+
+            <button mat-raised-button
+                    color="primary"
+                    (click)="send()"
+                    [disabled]="!recipients?.length || sending">
+                <ng-container *ngIf="!sending">
+                    Send
+                </ng-container>
+                <ng-container *ngIf="sending">
+                    <mat-spinner class="send-spinner" color="accent" diameter="28"></mat-spinner>
+                </ng-container>
+            </button>
+
+            <mat-checkbox
+                required
+                [(ngModel)]="html">
+                As HTML
+            </mat-checkbox>
+        </div>
+    </mat-card-actions>
+</mat-card>

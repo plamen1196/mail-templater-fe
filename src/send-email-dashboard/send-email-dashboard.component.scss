@@ -11,6 +11,7 @@
     .container {
         @include flex-column-centered();
         width: 100%;
+        // height: 100%;
 
         h1 {
             display: flex;
@@ -33,15 +34,8 @@
 
         .email-wrapper {
             @include flex-row-centered();
-
-            .email-sender-container {
-
-            }
-
-            .recipients-selector-container {
-                @include flex-column-centered();
-                align-items: flex-start;
-            }
+            width: 100%;
+            min-width: 320px;
         }
     }
 }

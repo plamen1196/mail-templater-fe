@@ -14,6 +14,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
 
 import { SendEmailDashboardComponent } from './send-email-dashboard.component';
@@ -56,6 +58,8 @@ import { RecipientsListComponent } from './recipients-list/recipients-list.compo
     MatListModule,
     MatSelectModule,
     MatOptionModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
     ClipboardModule,
     UtilModule
   ]
