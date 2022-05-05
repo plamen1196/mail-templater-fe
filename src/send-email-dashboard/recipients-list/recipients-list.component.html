@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>
+    <span>
+        Add recipients
+    </span>
+    <mat-icon>person</mat-icon>
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <h4 class="hint">
+        <mat-icon>info</mat-icon>
+        Please select recipient(s) and fill-in the details for each recipient in TSV format.
+        The fields for each row must keep their original order.
+    </h4>
+
+    <mat-form-field class="recipients-form-field">
+        <mat-label>Recipients</mat-label>
+        <mat-select (selectionChange)="onRecipientsSelectionChange($event)" required multiple>
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient">{{ recipient.email }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="recipients-data-form-field">
+        <mat-label>TSV data for the recipients.</mat-label>
+        <textarea matInput
+                  required
+                  matTextareaAutosize
+                  matAutosizeMaxRows="30"
+                  class="recipients-textarea"
+                  [(ngModel)]="recipientsTsvData"
+                  [disabled]="!selectedRecipients"
+                  (keydown.Tab)="onTabKey($event)">
+        </textarea>
+    </mat-form-field>
+    <button class="clipboard-button"
+            mat-raised-button
+            color="primary"
+            [cdkCopyToClipboard]="recipientsTsvData"
+            [disabled]="clipboardButtonDisabled"
+            (click)="onClipboardButtonClick()">
+        {{ clipboardButtonText }}
+    </button>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+    <button mat-raised-button
+            color="accent"
+            (click)="onCancel()">
+        Cancel
+    </button>
+    <button mat-raised-button
+            color="primary"
+            [disabled]="!selectedRecipients || !recipientsTsvData"
+            (click)="onSubmitRecipients()">
+        Select
+    </button>
+</mat-dialog-actions>

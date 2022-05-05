@@ -4,27 +4,26 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { RecipientGroupService } from 'src/services/recipient-group.service';
-import { RecipientGroupResource } from 'src/models/recipient-groups/recipient-group-resource';
 import { EmailStateService } from 'src/services/email-state.service';
+import { RecipientService } from 'src/services/recipient.service';
+import { UtilService } from 'src/services/util.service';
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
-import { UtilService } from 'src/services/util.service';
-import { SelectRecipientGroupResult } from 'src/models/dialogs/select-recipient-group-result';
+import { SelectRecipientsResult } from 'src/models/dialogs/select-recipient-result';
 
 const COPY_TO_CLIPBOARD_ENABLED = 'Copy to clipboard';
 const COPY_TO_CLIPBOARD_COPIED = 'Copied';
 
 @Component({
-  selector: 'app-recipient-groups-list',
-  templateUrl: './recipient-groups-list.component.html',
-  styleUrls: ['./recipient-groups-list.component.scss']
+  selector: 'app-recipients-list',
+  templateUrl: './recipients-list.component.html',
+  styleUrls: ['./recipients-list.component.scss']
 })
-export class RecipientGroupsListComponent implements OnInit, OnDestroy {
+export class RecipientsListComponent implements OnInit, OnDestroy {
 
   selectedEmailTemplate: EmailTemplate | null;
-  recipientGroups: Array<RecipientGroupResource> = [];
-  selectedRecipientGroup: RecipientGroupResource;
+  recipients: Array<RecipientResource> = [];
+  selectedRecipients: Array<RecipientResource>;
   recipientsTsvData: string = '';
 
   clipboardButtonDisabled = false;
@@ -34,14 +33,14 @@ export class RecipientGroupsListComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {},
-    private dialogRef: MatDialogRef<RecipientGroupsListComponent>,
+    private dialogRef: MatDialogRef<RecipientsListComponent>,
     private emailStateService: EmailStateService,
-    private recipientGroupService: RecipientGroupService,
+    private recipientService: RecipientService,
     private utilService: UtilService) { }
 
   ngOnInit(): void {
     this.fetchSelectedEmailTemplate();
-    this.fetchRecipientGroups();
+    this.fetchRecipients();
   }
 
   ngOnDestroy(): void {
@@ -49,8 +48,8 @@ export class RecipientGroupsListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  onRecipientGroupSelectionChange(event: { value: RecipientGroupResource }): void {
-    this.selectedRecipientGroup = event.value;
+  onRecipientsSelectionChange(event: { value: Array<RecipientResource> }): void {
+    this.selectedRecipients = event.value;
 
     this.populateRecipientsData();
   }
@@ -81,13 +80,13 @@ export class RecipientGroupsListComponent implements OnInit, OnDestroy {
 
   onSubmitRecipients(): void {
     const emailRecipients = this.utilService.buildRecipients(this.recipientsTsvData, this.selectedEmailTemplate?.placeholders);
-    const selectSecipientGroupResult: SelectRecipientGroupResult = { recipients: emailRecipients, cancelClicked: false };
+    const selectSecipientGroupResult: SelectRecipientsResult = { recipients: emailRecipients, cancelClicked: false };
     this.dialogRef.close(selectSecipientGroupResult);
   }
 
   onCancel(): void {
-    const selectSecipientGroupResult: SelectRecipientGroupResult = { recipients: [], cancelClicked: true };
-    this.dialogRef.close(selectSecipientGroupResult);
+    const selectSecipientsResult: SelectRecipientsResult = { recipients: [], cancelClicked: true };
+    this.dialogRef.close(selectSecipientsResult);
   }
 
   private fetchSelectedEmailTemplate(): void {
@@ -98,22 +97,19 @@ export class RecipientGroupsListComponent implements OnInit, OnDestroy {
       })
   }
 
-  private fetchRecipientGroups(): void {
-    this.recipientGroupService.getRecipientGroups()
-    .subscribe((response: Array<RecipientGroupResource>) => {
-      this.recipientGroups = response;
-    });
+  private fetchRecipients(): void {
+    this.recipientService.getRecipients()
+      .subscribe((response: Array<RecipientResource>) => {
+        this.recipients = response;
+      });
   }
 
   private populateRecipientsData(): void {
-    if (!this.selectedRecipientGroup || !this.selectedRecipientGroup.recipientIds) {
+    if (!this.selectedRecipients || !this.selectedRecipients.length) {
       return;
     }
 
-    this.recipientGroupService.getRecipientsOfRecipientGroupById(this.selectedRecipientGroup.id).subscribe(
-      (recipients: Array<RecipientResource>) => {
-      this.recipientsTsvData =
-        this.utilService.buildRecipientsTsvData(recipients, this.selectedEmailTemplate?.placeholders);
-    });
+    this.recipientsTsvData =
+      this.utilService.buildRecipientsTsvData(this.selectedRecipients, this.selectedEmailTemplate?.placeholders);
   }
 }

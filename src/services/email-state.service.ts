@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { Recipient } from 'src/models/recipient';
 import { EmailTemplate } from 'src/models/templates/email-template';
@@ -25,6 +26,16 @@ export class EmailStateService {
 
   getEmailRecipients(): Observable<Array<Recipient>> {
     return this.emailRecipients$.asObservable();
+  }
+
+  addEmailRecipients(newRecipients: Array<Recipient>): void {
+    this.getEmailRecipients()
+      .pipe(take(1))
+      .subscribe((recipients: Array<Recipient>) => {
+        const updatedRecipients = recipients.concat(newRecipients);
+
+        this.setEmailRecipients(updatedRecipients);
+      });
   }
 
   setEmailRecipients(recipients: Array<Recipient>): void {
