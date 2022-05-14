@@ -15,8 +15,12 @@
         </mat-form-field>
         <mat-form-field class="message-form-field">
             <mat-label>Template message</mat-label>
-            <textarea matInput
+            <mat-hint>Characters: {{ (templatesMessage.value?.length || 0) }} / {{ templatesMessageMaxLength | async }} </mat-hint>
+            <!-- <mat-hint> Example: Hello %(name), how are you?</mat-hint> -->
+            <textarea #templatesMessage
+                      matInput
                       required
+                      [maxLength]="templatesMessageMaxLength | async"
                       matTextareaAutosize
                       matAutosizeMaxRows="30"
                       [formControlName]="'message'"

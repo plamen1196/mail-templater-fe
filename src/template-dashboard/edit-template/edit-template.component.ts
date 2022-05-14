@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { TemplateService } from 'src/services/template.service';
@@ -16,16 +17,21 @@ import { UtilService } from 'src/services/util.service';
 export class EditTemplateComponent implements OnInit {
 
   formGroup: FormGroup;
+  templatesMessageMaxLength: Observable<number>;
 
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { emailTemplate: EmailTemplate },
     private dialogRef: MatDialogRef<EditTemplateComponent>,
     private utilService: UtilService,
-    private templateService: TemplateService) { }
+    private templateService: TemplateService,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.generateForm();
+
+    this.templatesMessageMaxLength = this.templateService.templatesMessageMaxLength$.asObservable();
+    this.cdr.detectChanges();
   }
 
   onSaveTemplate(): void {

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { TemplateService } from 'src/services/template.service';
@@ -13,18 +14,25 @@ import { UtilService } from 'src/services/util.service';
   templateUrl: './create-template.component.html',
   styleUrls: ['./create-template.component.scss']
 })
-export class CreateTemplateComponent {
+export class CreateTemplateComponent implements OnInit {
 
   formGroup: FormGroup;
+  templatesMessageMaxLength: Observable<number>;
 
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {},
     private dialogRef: MatDialogRef<CreateTemplateComponent>,
     private utilService: UtilService,
-    private templateService: TemplateService) {
+    private templateService: TemplateService,
+    private cdr: ChangeDetectorRef) {
     /* Generate form */
     this.formGroup = this.generateForm();
+  }
+
+  ngOnInit(): void {
+    this.templatesMessageMaxLength = this.templateService.templatesMessageMaxLength$.asObservable();
+    this.cdr.detectChanges();
   }
 
   onCreateTemplate(): void {

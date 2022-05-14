@@ -16,6 +16,7 @@ const API_URL = environment.apiUrl;
     public static readonly GET_TEMPLATES: string = `${API_URL}/templates`;
     public static readonly DELETE_TEMPLATE: string = `${API_URL}/templates/`;
     public static readonly PATCH_TEMPLATE: string = `${API_URL}/templates/`;
+    public static readonly TEMPLATE_MESSAGE_MAX_LENGTH: string = `${API_URL}/templates/message-max-length`;
 
     /* Recipients */
     public static readonly CREATE_RECIPIENT: string = `${API_URL}/recipients`;

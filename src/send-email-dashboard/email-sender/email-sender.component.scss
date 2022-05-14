@@ -14,6 +14,13 @@
         mat-card-content {
             display: flex;
             flex-direction: column;
+
+            .chips-list {
+                display: block;
+                max-height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
         }
 
         mat-card-actions {
