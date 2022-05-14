@@ -1,14 +1,16 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http/http';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { Recipient } from 'src/models/recipient';
 import { EmailService } from 'src/services/email.service';
-import { HttpErrorResponse } from '@angular/common/http/http';
 import { EmailStateService } from 'src/services/email-state.service';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
 import { EditEmailRecipientComponent } from '../edit-email-recipient/edit-email-recipient.component';
@@ -25,6 +27,8 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   recipients: Array<Recipient>;
   isHtml = false;
   sending = false;
+
+  @ViewChild('previewAs', { read: MatSelect }) previewAsSelect: MatSelect;
 
   private readonly destroy$ = new Subject<void>();
 
@@ -71,6 +75,10 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   }
 
   onPreviewAsSelectionChange(event: { value: RecipientResource }): void {
+    if (!this.previewAsSelect.selected) {
+      return;
+    }
+
     const singleRecipientList = [event.value];
     const dialogRef = this.dialog.open(PreviewAllComponent, {
       data: { emailTemplate: this.emailTemplate, recipients: singleRecipientList },
@@ -79,6 +87,8 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
       minHeight: 800,
       autoFocus: false
     });
+
+    (this.previewAsSelect.selected as MatOption).deselect();
   }
 
   previewAll(): void {
