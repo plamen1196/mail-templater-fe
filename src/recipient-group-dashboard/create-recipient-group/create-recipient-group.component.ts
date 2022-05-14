@@ -66,11 +66,12 @@ export class CreateRecipientGroupComponent implements OnInit {
   }
 
   private handleSucces(response: RecipientGroupResource): void {
-    this.dialogRef.close({ success: true, cancelClicked: false });
+    this.dialogRef.close({ success: true, cancelClicked: false, message: 'Recipient group created successfully!' });
   }
 
   private handleFailure(response: HttpErrorResponse): void {
-    this.dialogRef.close({ success: false, cancelClicked: false });
+    const message = response?.error?.message || 'ERROR when creating recipient group!';
+    this.dialogRef.close({ success: false, cancelClicked: false, message: message });
   }
 
   private fetchAllRecipients(): void {

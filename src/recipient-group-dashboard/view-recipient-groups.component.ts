@@ -39,9 +39,8 @@ export class ViewRecipientGroupsComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Recipient group created successfully!" : "ERROR when creating recipient group!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
@@ -61,9 +60,8 @@ export class ViewRecipientGroupsComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked, editedRecipientGroupResourceId }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, editedRecipientGroupResourceId, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Recipient group edited successfully!" : "ERROR when editing recipient group!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
@@ -92,9 +90,8 @@ export class ViewRecipientGroupsComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked, deletedRecipientGroupId }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, deletedRecipientGroupId, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Recipient group deleted successfully!" : "ERROR when deleting recipient group!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });

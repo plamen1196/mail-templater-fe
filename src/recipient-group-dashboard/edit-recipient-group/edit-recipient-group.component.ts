@@ -69,11 +69,12 @@ export class EditRecipientGroupComponent implements OnInit {
   }
 
   private handleSucces(response: RecipientGroupResource): void {
-    this.dialogRef.close({ success: true, cancelClicked: false, editedRecipientGroupResourceId: this.data.recipientGroupResource.id });
+    this.dialogRef.close({ success: true, cancelClicked: false, editedRecipientGroupResourceId: this.data.recipientGroupResource.id, message: 'Recipient group edited successfully!' });
   }
 
   private handleFailure(response: HttpErrorResponse): void {
-    this.dialogRef.close({ success: false, cancelClicked: false });
+    const message = response?.error?.message || 'ERROR when editing recipient group!';
+    this.dialogRef.close({ success: false, cancelClicked: false, message: message });
   }
 
   private fetchAllRecipients(): void {
