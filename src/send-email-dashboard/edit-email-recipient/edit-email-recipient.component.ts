@@ -9,7 +9,8 @@ import { Recipient } from 'src/models/recipient';
   styleUrls: ['./edit-email-recipient.component.scss']
 })
 export class EditEmailRecipientComponent {
-  keys: Array<string> = Array.from(this.data.recipient.placeholders.keys());
+  keys: Array<string> = Array.from(
+    this.data.recipient.placeholders?.keys() ? this.data.recipient.placeholders.keys() : []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { recipient: Recipient }) { }
 

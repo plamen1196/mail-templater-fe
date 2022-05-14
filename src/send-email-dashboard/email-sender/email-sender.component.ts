@@ -30,7 +30,7 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private mailService: EmailService,
+    private emailService: EmailService,
     private emailStateService: EmailStateService,
     private snackbar: MatSnackBar) { }
 
@@ -59,16 +59,26 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   }
 
   send(): void {
-    // console.log(this.html);
-    // this.sending = true;
-    // this.mailService.sendMail(this.emailTemplate, this.recipients, this.html).subscribe(
-    //   (response: number) => { this.handleSuccess(response); },
-    //   (response: HttpErrorResponse) => { this.handleFailure(response); }
-    // );
+    if (!this.emailTemplate) {
+      return;
+    }
+
+    this.sending = true;
+    this.emailService.sendEmails(this.emailTemplate, this.recipients, this.isHtml).subscribe(
+      (response: number) => { this.handleSuccess(response); },
+      (response: HttpErrorResponse) => { this.handleFailure(response); }
+    );
   }
 
   onPreviewAsSelectionChange(event: { value: RecipientResource }): void {
-
+    const singleRecipientList = [event.value];
+    const dialogRef = this.dialog.open(PreviewAllComponent, {
+      data: { emailTemplate: this.emailTemplate, recipients: singleRecipientList },
+      disableClose: false,
+      minWidth: 600,
+      minHeight: 800,
+      autoFocus: false
+    });
   }
 
   previewAll(): void {

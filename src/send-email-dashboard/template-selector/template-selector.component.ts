@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 import { EmailTemplate } from 'src/models/templates/email-template';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,8 @@ import { SelectTemplateResult } from 'src/models/dialogs/select-template-result'
 })
 export class TemplateSelectorComponent {
 
-  selectedTemplate: EmailTemplate;
+  @Input()
+  selectedTemplate: EmailTemplate | null;
 
   @Output()
   readonly selectedTemplateChange: EventEmitter<EmailTemplate> = new EventEmitter();

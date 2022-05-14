@@ -12,14 +12,17 @@
                    [(ngModel)]="data.recipient.email"
             >
         </mat-form-field>
-        <mat-form-field *ngFor="let key of keys">
-            <mat-label>{{ key }}</mat-label>
-            <input matInput
-                   required
-                   [name]="data.recipient.placeholders.get(key) || 'PLACEHOLDER'"
-                   [ngModel]="data.recipient.placeholders.get(key) || ''"
-                   (ngModelChange)="placeholderValueChange(key, $event)">
-        </mat-form-field>
+
+        <ng-container *ngIf="data.recipient.placeholders">
+            <mat-form-field *ngFor="let key of keys">
+                <mat-label>{{ key }}</mat-label>
+                <input matInput
+                    required
+                    [name]="data.recipient.placeholders.get(key) || 'PLACEHOLDER'"
+                    [ngModel]="data.recipient.placeholders.get(key) || ''"
+                    (ngModelChange)="placeholderValueChange(key, $event)">
+            </mat-form-field>
+        </ng-container>
     </form>
 </mat-dialog-content>
 

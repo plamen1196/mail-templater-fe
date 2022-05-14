@@ -25,7 +25,7 @@ export class EmailService {
     return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
   }
 
-  sendEmail(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean): Observable<number> {
+  sendEmails(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean): Observable<number> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     const payload = this.buildSendMailRequest(emailTemplate, recipients, isHtml);
 
@@ -43,7 +43,11 @@ export class EmailService {
     const sendMailRequest = new SendMailRequest();
     sendMailRequest.title = emailTemplate.title;
     sendMailRequest.message = emailTemplate.message;
-    sendMailRequest.placeholders = emailTemplate.placeholders;
+    /* 
+     * It is possible that the template does not have placeholders (ordinary email).
+     * In this case we need to pass empty array, due to the @NotNull constraint by the backend.
+    */
+    sendMailRequest.placeholders = emailTemplate.placeholders ? emailTemplate.placeholders : [];
     sendMailRequest.recipients = this.buildRecipientRequests(recipients);
     sendMailRequest.isHtml = isHtml;
 
@@ -62,9 +66,13 @@ export class EmailService {
     // }
 
     const convertedMap: any = {};
-    recipient.placeholders.forEach((val: string, key: string) => {
-      convertedMap[key] = val;
-    });
+
+    /* If the template does not have placeholders, then the recipients might not have as well. */
+    if (recipient.placeholders) {
+      recipient.placeholders.forEach((val: string, key: string) => {
+        convertedMap[key] = val;
+      });
+    }
 
     const recipientRequest = new RecipientRequest();
     recipientRequest.email = recipient.email;

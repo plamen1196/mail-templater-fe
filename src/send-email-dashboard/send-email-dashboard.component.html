@@ -5,7 +5,10 @@
     </h1>
 
     <div class="template-selector-container">
-        <app-template-selector (selectedTemplateChange)="onSelectedTemplateChange($event)"></app-template-selector>
+        <app-template-selector
+            [selectedTemplate]="selectedEmailTemplate"
+            (selectedTemplateChange)="onSelectedTemplateChange($event)">
+        </app-template-selector>
     </div>
 
     <mat-divider></mat-divider>
