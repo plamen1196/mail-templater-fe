@@ -30,10 +30,11 @@ export class DeleteTemplateComponent {
   }
 
   private handleSucces(response: EmailTemplate): void {
-    this.dialogRef.close({ success: true, cancelClicked: false });
+    this.dialogRef.close({ success: true, cancelClicked: false, message: 'Template deleted successfully!' });
   }
 
   private handleFailure(response: HttpErrorResponse): void {
-    this.dialogRef.close({ success: false, cancelClicked: false });
+    const message = response?.error?.message || 'ERROR when deleting template!';
+    this.dialogRef.close({ success: false, cancelClicked: false, message: message });
   }
 }

@@ -62,10 +62,12 @@ export class EditTemplateComponent implements OnInit {
   }
 
   private handleSucces(response: EmailTemplate): void {
-    this.dialogRef.close({ success: true, cancelClicked: false });
+    this.dialogRef.close({ success: true, cancelClicked: false, message: 'Template edited successfully!' });
   }
 
   private handleFailure(response: HttpErrorResponse): void {
-    this.dialogRef.close({ success: false, cancelClicked: false });
+    console.log(response);
+    const message = response?.error?.message || 'ERROR when editing template!';
+    this.dialogRef.close({ success: false, cancelClicked: false, message: message });
   }
 }

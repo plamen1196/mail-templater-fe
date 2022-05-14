@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -61,10 +61,11 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   private handleSucces(response: EmailTemplate): void {
-    this.dialogRef.close({ success: true, cancelClicked: false });
+    this.dialogRef.close({ success: true, cancelClicked: false, message: 'Template created successfully' });
   }
 
   private handleFailure(response: HttpErrorResponse): void {
-    this.dialogRef.close({ success: false, cancelClicked: false });
+    const message = response?.error?.message || 'ERROR when creating template!';
+    this.dialogRef.close({ success: false, cancelClicked: false, message: message });
   }
 }

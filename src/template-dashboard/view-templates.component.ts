@@ -38,9 +38,8 @@ export class ViewTemplatesComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Template created successfully!" : "ERROR when creating template!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
@@ -60,9 +59,8 @@ export class ViewTemplatesComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Template edited successfully!" : "ERROR when editing template!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
@@ -82,9 +80,8 @@ export class ViewTemplatesComponent implements OnInit {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(({ success, cancelClicked }) => {
+    dialogRef.afterClosed().subscribe(({ success, cancelClicked, message }) => {
       if (!cancelClicked) {
-        const message = success ? "Template deleted successfully!" : "ERROR when deleting template!";
         this.snackbar.open(message, undefined, {
           duration: 3000
         });
