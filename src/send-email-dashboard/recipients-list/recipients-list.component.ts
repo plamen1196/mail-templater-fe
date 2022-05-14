@@ -89,6 +89,13 @@ export class RecipientsListComponent implements OnInit, OnDestroy {
     this.dialogRef.close(selectSecipientsResult);
   }
 
+  buildRecipientTooltip(recipient: RecipientResource) {
+    return `${recipient.firstName ? (recipient.firstName + ' ') : ''}` + 
+           `${recipient.lastName ? (recipient.lastName + ' ') : ''}` +
+           `${recipient.phoneNumber ? (recipient.phoneNumber + ' ') : ''}` +
+           `${recipient.address ? (recipient.address + ' ') : ''}`;
+  }
+
   private fetchSelectedEmailTemplate(): void {
     this.emailStateService.getEmailTemplate()
       .pipe(takeUntil(this.destroy$))

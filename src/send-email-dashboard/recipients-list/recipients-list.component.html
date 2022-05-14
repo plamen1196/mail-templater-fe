@@ -23,7 +23,12 @@
         <mat-label>Recipients</mat-label>
         <mat-hint>All changes to the selection list will override the current state of the TSV data.</mat-hint>
         <mat-select (selectionChange)="onRecipientsSelectionChange($event)" required multiple>
-            <mat-option *ngFor="let recipient of recipients" [value]="recipient">{{ recipient.email }}</mat-option>
+            <mat-option
+                *ngFor="let recipient of recipients"
+                [value]="recipient"
+                [matTooltip]="buildRecipientTooltip(recipient)">
+                {{ recipient.email }}
+            </mat-option>
         </mat-select>
     </mat-form-field>
 

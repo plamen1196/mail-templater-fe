@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
 
 import { SendEmailDashboardComponent } from './send-email-dashboard.component';
@@ -60,6 +61,7 @@ import { RecipientsListComponent } from './recipients-list/recipients-list.compo
     MatOptionModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    MatTooltipModule,
     ClipboardModule,
     UtilModule
   ]
