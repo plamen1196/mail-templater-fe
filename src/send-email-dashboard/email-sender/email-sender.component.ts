@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { Recipient } from 'src/models/recipient';
 import { EmailService } from 'src/services/email.service';
 import { HttpErrorResponse } from '@angular/common/http/http';
 import { EmailStateService } from 'src/services/email-state.service';
+import { RecipientResource } from 'src/models/recipients/recipient-resource';
 
 @Component({
   selector: 'app-email-sender',
@@ -68,7 +69,11 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
     // );
   }
 
-  preview(): void {
+  onPreviewAsSelectionChange(event: { value: RecipientResource }): void {
+
+  }
+
+  previewAll(): void {
     // const dialogRef = this.dialog.open(PreviewComponent, {
     //   data: { emailTemplate: this.emailTemplate, recipients: this.recipients },
     //   disableClose: false,

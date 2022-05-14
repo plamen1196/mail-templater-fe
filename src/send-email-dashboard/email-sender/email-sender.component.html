@@ -39,13 +39,27 @@
         </div>
 
         <div class="email-operations-container">
+            <mat-checkbox
+                required
+                [(ngModel)]="html">
+                As HTML
+            </mat-checkbox>
+            <mat-form-field class="preview-as">
+                <mat-label>Preview as:</mat-label>
+                <mat-select #previewAs [disabled]="!recipients?.length || sending" (selectionChange)="onPreviewAsSelectionChange($event)">
+                    <mat-option
+                        *ngFor="let recipient of recipients"
+                        [value]="recipient">
+                        {{ recipient.email }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <button mat-raised-button
-                    color="primary"
-                    (click)="preview()"
+                    color="accent"
+                    (click)="previewAll()"
                     [disabled]="!recipients?.length || sending">
-                Preview
+                Preview all
             </button>
-
             <button mat-raised-button
                     color="primary"
                     (click)="send()"
@@ -57,12 +71,6 @@
                     <mat-spinner class="send-spinner" color="accent" diameter="28"></mat-spinner>
                 </ng-container>
             </button>
-
-            <mat-checkbox
-                required
-                [(ngModel)]="html">
-                As HTML
-            </mat-checkbox>
         </div>
     </mat-card-actions>
 </mat-card>
