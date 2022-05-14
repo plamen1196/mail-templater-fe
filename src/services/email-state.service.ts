@@ -28,6 +28,10 @@ export class EmailStateService {
     return this.emailRecipients$.asObservable();
   }
 
+  setEmailRecipients(recipients: Array<Recipient>): void {
+    this.emailRecipients$.next(recipients);
+  }
+
   addEmailRecipients(newRecipients: Array<Recipient>): void {
     this.getEmailRecipients()
       .pipe(take(1))
@@ -38,7 +42,18 @@ export class EmailStateService {
       });
   }
 
-  setEmailRecipients(recipients: Array<Recipient>): void {
-    this.emailRecipients$.next(recipients);
+  removeEmailRecipient(recipient: Recipient): void {
+    this.getEmailRecipients()
+      .pipe(take(1))
+      .subscribe((recipients: Array<Recipient>) => {
+        const indexOfElement = recipients.indexOf(recipient);
+
+        if (indexOfElement >= 0) {
+          recipients.splice(indexOfElement, 1);
+          this.setEmailRecipients(recipients);
+        } else {
+          console.error(`Cannot find recipient with email ${recipient.email} to remove it from email list.`);
+        }
+      });
   }
 }

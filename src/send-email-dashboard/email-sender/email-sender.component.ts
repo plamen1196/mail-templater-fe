@@ -11,6 +11,7 @@ import { EmailService } from 'src/services/email.service';
 import { HttpErrorResponse } from '@angular/common/http/http';
 import { EmailStateService } from 'src/services/email-state.service';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
+import { EditEmailRecipientComponent } from '../edit-email-recipient/edit-email-recipient.component';
 
 @Component({
   selector: 'app-email-sender',
@@ -43,21 +44,17 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   }
 
   removeRecipient(recipient: Recipient): void {
-    // const index = this.recipients.indexOf(recipient);
-
-    // if (index >= 0) {
-    //   this.recipients.splice(index, 1);
-    // }
+    this.emailStateService.removeEmailRecipient(recipient);
   }
 
   editRecipient(recipient: Recipient): void {
-    // const dialogRef = this.dialog.open(EditRecipientComponent, {
-    //   data: { recipient: recipient },
-    //   disableClose: true,
-    //   minWidth: 400,
-    //   minHeight: 300,
-    //   autoFocus: false
-    // });
+    const dialogRef = this.dialog.open(EditEmailRecipientComponent, {
+      data: { recipient: recipient },
+      disableClose: true,
+      minWidth: 400,
+      minHeight: 300,
+      autoFocus: false
+    });
   }
 
   send(): void {

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>
+    Edit email recipient
+</h2>
+
+<mat-dialog-content>
+    <form #form="ngForm">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput
+                   required
+                   [name]="'recipientEmail'"
+                   [(ngModel)]="data.recipient.email"
+            >
+        </mat-form-field>
+        <mat-form-field *ngFor="let key of keys">
+            <mat-label>{{ key }}</mat-label>
+            <input matInput
+                   required
+                   [name]="data.recipient.placeholders.get(key) || 'PLACEHOLDER'"
+                   [ngModel]="data.recipient.placeholders.get(key) || ''"
+                   (ngModelChange)="placeholderValueChange(key, $event)">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" [disabled]="form.invalid">
+        Done
+    </button>
+</mat-dialog-actions>
