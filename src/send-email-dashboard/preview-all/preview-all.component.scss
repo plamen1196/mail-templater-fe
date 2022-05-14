@@ -1,0 +1,26 @@
+:host {
+    .wrapper {
+        max-height: 800px;
+        overflow-y: auto;
+    }
+
+    mat-card {
+        height: 100%;
+        margin: 16px 8px;
+
+        mat-card-content {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    mat-form-field {
+        display: block;
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    .message-textarea {
+        min-height: 200px;
+    }
+}

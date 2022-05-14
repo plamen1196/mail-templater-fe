@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <ng-container *ngIf="isLoading">
+        <h2>Loading ...</h2>
+    </ng-container>
+    <ng-container *ngIf="!isLoading">
+        <mat-card class="card" *ngFor="let previewRecipientEmail of previewRecipientEmails">
+            <mat-card-content>
+                <form>
+                    <mat-form-field class="chips-form-field">
+                        <mat-label>To</mat-label>
+                        <mat-chip-list #chipList>
+                            <mat-chip [removable]="false">
+                                {{ previewRecipientEmail.email }}
+                            </mat-chip>
+                            <input [matChipInputFor]="chipList" [disabled]="true" [matChipInputAddOnBlur]="false">
+                        </mat-chip-list>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Subject</mat-label>
+                        <input matInput
+                            [value]="data.emailTemplate.title"
+                            [disabled]="true">
+                    </mat-form-field>
+                    <mat-form-field class="message-form-field">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput
+                                matTextareaAutosize
+                                class="message-textarea"
+                                [value]="previewRecipientEmail.message"
+                                [disabled]="true"></textarea>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+</div>

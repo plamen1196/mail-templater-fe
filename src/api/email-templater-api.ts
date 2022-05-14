@@ -7,8 +7,8 @@ const API_URL = environment.apiUrl;
  */
  export class EmailTemplaterApi {
     public static readonly HOME: string = `${API_URL}/`;
-    public static readonly SEND_MAILS: string = `${API_URL}/send-mails`;
-    public static readonly PREVIEW_MAILS: string = `${API_URL}/preview-mails`;
+    public static readonly SEND_MAILS: string = `${API_URL}/send-emails`;
+    public static readonly PREVIEW_MAILS: string = `${API_URL}/preview-emails`;
     public static readonly HISTORY: string = `${API_URL}/history`;
 
     /* Email templates */

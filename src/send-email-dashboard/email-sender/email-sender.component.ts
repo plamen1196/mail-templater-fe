@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http/http';
 import { EmailStateService } from 'src/services/email-state.service';
 import { RecipientResource } from 'src/models/recipients/recipient-resource';
 import { EditEmailRecipientComponent } from '../edit-email-recipient/edit-email-recipient.component';
+import { PreviewAllComponent } from '../preview-all/preview-all.component';
 
 @Component({
   selector: 'app-email-sender',
@@ -22,7 +23,7 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
 
   emailTemplate: EmailTemplate | null;
   recipients: Array<Recipient>;
-  html = false;
+  isHtml = false;
   sending = false;
 
   private readonly destroy$ = new Subject<void>();
@@ -71,13 +72,13 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   }
 
   previewAll(): void {
-    // const dialogRef = this.dialog.open(PreviewComponent, {
-    //   data: { emailTemplate: this.emailTemplate, recipients: this.recipients },
-    //   disableClose: false,
-    //   minWidth: 600,
-    //   minHeight: 300,
-    //   autoFocus: false
-    // });
+    const dialogRef = this.dialog.open(PreviewAllComponent, {
+      data: { emailTemplate: this.emailTemplate, recipients: this.recipients },
+      disableClose: false,
+      minWidth: 600,
+      minHeight: 800,
+      autoFocus: false
+    });
   }
 
   private handleSuccess(response: number): void {

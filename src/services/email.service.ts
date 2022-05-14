@@ -25,27 +25,27 @@ export class EmailService {
     return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
   }
 
-  sendMail(emailTemplate: EmailTemplate, recipients: Array<Recipient>, html: boolean): Observable<number> {
+  sendEmail(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean): Observable<number> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    const payload = this.buildSendMailRequest(emailTemplate, recipients, html);
+    const payload = this.buildSendMailRequest(emailTemplate, recipients, isHtml);
 
     return this.httpClient.post<number>(EmailTemplaterApi.SEND_MAILS, payload, { headers });
   }
 
-  previewMail(emailTemplate: EmailTemplate, recipients: Array<Recipient>): Observable<Array<PreviewRecipientEmail>> {
+  previewEmails(emailTemplate: EmailTemplate, recipients: Array<Recipient>): Observable<Array<PreviewRecipientEmail>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     const payload = this.buildSendMailRequest(emailTemplate, recipients, false);
 
     return this.httpClient.post<Array<PreviewRecipientEmail>>(EmailTemplaterApi.PREVIEW_MAILS, payload, { headers });
   }
 
-  private buildSendMailRequest(emailTemplate: EmailTemplate, recipients: Array<Recipient>, html: boolean): SendMailRequest {
+  private buildSendMailRequest(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean): SendMailRequest {
     const sendMailRequest = new SendMailRequest();
     sendMailRequest.title = emailTemplate.title;
     sendMailRequest.message = emailTemplate.message;
     sendMailRequest.placeholders = emailTemplate.placeholders;
     sendMailRequest.recipients = this.buildRecipientRequests(recipients);
-    sendMailRequest.html = html;
+    sendMailRequest.isHtml = isHtml;
 
     console.log(sendMailRequest);
 

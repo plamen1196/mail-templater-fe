@@ -30,6 +30,7 @@ import { EmailSenderComponent } from './email-sender/email-sender.component';
 import { RecipientGroupsListComponent } from './recipient-groups-list/recipient-groups-list.component';
 import { RecipientsListComponent } from './recipients-list/recipients-list.component';
 import { EditEmailRecipientComponent } from './edit-email-recipient/edit-email-recipient.component';
+import { PreviewAllComponent } from './preview-all/preview-all.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EditEmailRecipientComponent } from './edit-email-recipient/edit-email-r
     EmailSenderComponent,
     RecipientGroupsListComponent,
     RecipientsListComponent,
-    EditEmailRecipientComponent
+    EditEmailRecipientComponent,
+    PreviewAllComponent
   ],
   imports: [
     CommonModule,
