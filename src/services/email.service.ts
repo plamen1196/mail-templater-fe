@@ -18,11 +18,40 @@ export class EmailService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getHistory(startDate?: Date, endDate?: Date): Observable<Array<SentEmailResource>> {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    const params = this.buildHistoryDateParams(startDate, endDate);
+  getHistory(
+    subject?: string,
+    senderEmail?: string,
+    recipientEmail?: string,
+    sentSuccessfully?: boolean,
+    confirmation?: number,
+    startDate?: Date,
+    endDate?: Date): Observable<Array<SentEmailResource>> {
+      const headers = new HttpHeaders().set('content-type', 'application/json');
+      let params = this.buildHistoryDateParams(startDate, endDate);
 
-    return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
+      if (subject) {
+        params = params.append('subject', subject);
+      }
+
+      if (senderEmail) {
+        params = params.append('senderEmail', senderEmail);
+      }
+
+      if (recipientEmail) {
+        params = params.append('recipientEmail', recipientEmail);
+      }
+
+      /* We must allow the value "false" */
+      if (sentSuccessfully != null && sentSuccessfully != undefined) {
+        params = params.append('sentSuccessfully', sentSuccessfully);
+      }
+
+      /* We must allow the value "0" */
+      if (confirmation != null && confirmation != undefined) {
+        params = params.append('confirmation', confirmation);
+      }
+      
+      return this.httpClient.get<Array<SentEmailResource>>(EmailTemplaterApi.HISTORY, { headers, params });
   }
 
   sendEmails(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean): Observable<number> {

@@ -6,4 +6,5 @@ export class SentEmailResource {
     recipientEmail: string;
     sentSuccessfully: boolean;
     timestamp: Date;
+    confirmation: number;
 }

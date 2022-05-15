@@ -11,27 +11,69 @@
         <span class="separator">
             OR
         </span>
-        <form [formGroup]="formGroup" name="formGroup" (ngSubmit)="onSubmitDateRange()">
-            <mat-form-field appearance="fill">
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate placeholder="Start date" [formControlName]="'startDate'">
-                    <input matEndDate placeholder="End date" [formControlName]="'endDate'">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
+        <form [formGroup]="formGroup" name="formGroup" (ngSubmit)="onSubmit()">
+            <div class="filter-row">
+                <mat-form-field>
+                    <mat-label>Subject</mat-label>
+                    <input matInput
+                        [formControlName]="'subject'">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>From</mat-label>
+                    <input matInput
+                        [formControlName]="'from'">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>To</mat-label>
+                    <input matInput
+                        [formControlName]="'to'">
+                </mat-form-field>
+            </div>
+            <div class="filter-row">
+                <mat-form-field>
+                    <mat-label>Confirmation</mat-label>
+                    <mat-select [formControlName]="'confirmation'">
+                        <mat-option [value]="0">{{ 'Unconfirmed' }}</mat-option>
+                        <mat-option [value]="1">{{ 'Received' }}</mat-option>
+                        <mat-option [value]="2">{{ 'Received and confirmed' }}</mat-option>
+                        <mat-option [value]="3">{{ 'Received and rejected' }}</mat-option>
+                        <mat-option [value]="null">{{ 'Any' }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Sent status</mat-label>
+                    <mat-select [formControlName]="'sentsuccessfully'">
+                        <mat-option [value]="true">{{ 'Success' }}</mat-option>
+                        <mat-option [value]="false">{{ 'Fail' }}</mat-option>
+                        <mat-option [value]="null">{{ 'Any' }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date" [formControlName]="'startDate'">
+                        <input matEndDate placeholder="End date" [formControlName]="'endDate'">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
 
-            <button mat-raised-button color="primary" type="submit">
-                Go
-            </button>
+            <div>
+                <button mat-raised-button color="primary" type="reset">
+                    Clear all
+                </button>
+                <button mat-raised-button color="primary" type="submit">
+                    Go
+                </button>
+            </div>
         </form>
     </div>
 
     <div class="sent-emails-container" >
-        <h2 class="mat-h2">
+        <!-- <h2 class="mat-h2">
             Showing: <strong>{{ historyRecordsHeading }}</strong>
-        </h2>
+        </h2> -->
         <h2 class="mat-h2">
             Records count: <strong>{{ historyRecordsCount }}</strong>
         </h2>
@@ -58,6 +100,15 @@
                         <span class="sent-successfully-field" [class.sent-successfully]="sentEmail.sentSuccessfully">
                             {{ sentEmail.sentSuccessfully ? 'Yes' : 'No' }}
                         </span>
+                    </div>
+                    <div class="confirmation-field">
+                        <span class="email-field">Confirmation: </span>
+                        <ng-container [ngSwitch]="sentEmail.confirmation">
+                            <span *ngSwitchCase="0" class="unconfirmed">Unconfirmed</span>
+                            <span *ngSwitchCase="1" class="received">Received</span>
+                            <span *ngSwitchCase="2" class="received-and-confirmed">Received and confirmed</span>
+                            <span *ngSwitchCase="3" class="received-and-rejected">Received and rejected</span>
+                        </ng-container>
                     </div>
                     <div>
                         <span class="email-field">Message: </span>

@@ -38,15 +38,17 @@ export class HistoryComponent {
     );
   }
 
-  onSubmitDateRange(): void {
+  onSubmit(): void {
+    const subject = this.formGroup.controls['subject'].value || null;
+    const from = this.formGroup.controls['from'].value || null;
+    const to = this.formGroup.controls['to'].value || null;
+    const sentSuccessfully = this.formGroup.controls['sentsuccessfully'].value;
+    const confirmation = this.formGroup.controls['confirmation'].value;
+
     const startDate: Date = this.formGroup.controls['startDate'].value;
     const endDate: Date = this.formGroup.controls['endDate'].value;
     const zonedStartDate = this.utilService.buildDateIsoString(startDate);
     const zonedEndDate = this.utilService.buildDateIsoString(endDate);
-
-    if (!zonedStartDate && !zonedEndDate) {
-      return;
-    }
 
     if (zonedStartDate && zonedEndDate) {
       this.historyRecordsHeading =
@@ -63,7 +65,7 @@ export class HistoryComponent {
         `History before ${zonedEndDate.toLocaleDateString('en-GB')}`;
     }
 
-    this.emailService.getHistory(zonedStartDate, zonedEndDate).subscribe(
+    this.emailService.getHistory(subject, from, to, sentSuccessfully, confirmation, zonedStartDate, zonedEndDate).subscribe(
       (response: Array<SentEmailResource>) => { this.handleSucces(response); },
       (response: HttpErrorResponse) => { this.handleFailure(response); }
     );
@@ -72,8 +74,13 @@ export class HistoryComponent {
   private generateForm(): FormGroup {
     const form: FormGroup = this.formBuilder.group({});
 
-    form.addControl('startDate', new FormControl(new Date()));
-    form.addControl('endDate', new FormControl(new Date()));
+    form.addControl('subject', new FormControl(''));
+    form.addControl('from', new FormControl(''));
+    form.addControl('to', new FormControl(''));
+    form.addControl('sentsuccessfully', new FormControl(null));
+    form.addControl('confirmation', new FormControl(null));
+    form.addControl('startDate', new FormControl(null));
+    form.addControl('endDate', new FormControl(null));
 
     return form;
   }
