@@ -6,7 +6,10 @@ const API_URL = environment.apiUrl;
  * Class that contains the API endpoints for the Email Templater Backend Service.
  */
  export class EmailTemplaterApi {
+
+    /* Email management */
     public static readonly HOME: string = `${API_URL}/`;
+    public static readonly GET_SMTP_SERVERS: string = `${API_URL}/get-smtp-servers`;
     public static readonly SEND_MAILS: string = `${API_URL}/send-emails`;
     public static readonly PREVIEW_MAILS: string = `${API_URL}/preview-emails`;
     public static readonly HISTORY: string = `${API_URL}/history`;
