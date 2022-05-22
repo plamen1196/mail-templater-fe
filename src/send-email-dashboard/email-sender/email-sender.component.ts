@@ -48,6 +48,10 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  clearRecipients(): void {
+    this.emailStateService.setEmailRecipients([]);
+  }
+
   removeRecipient(recipient: Recipient): void {
     this.emailStateService.removeEmailRecipient(recipient);
   }

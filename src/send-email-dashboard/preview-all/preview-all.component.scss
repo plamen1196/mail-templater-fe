@@ -1,3 +1,6 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/_variables.scss';
+
 :host {
     .wrapper {
         max-height: 800px;
@@ -7,6 +10,7 @@
     mat-card {
         height: 100%;
         margin: 16px 8px;
+        background-color: $secondary-color;
 
         mat-card-content {
             display: flex;

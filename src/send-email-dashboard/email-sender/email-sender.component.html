@@ -36,6 +36,9 @@
         <div class="recipients-selector-container">
             <app-recipient-groups-selector [disabled]="!emailTemplate"></app-recipient-groups-selector>
             <app-recipient-selector [disabled]="!emailTemplate"></app-recipient-selector>
+            <button class="clear-recipients" mat-raised-button color="accent" [disabled]="!recipients?.length" (click)="clearRecipients()">
+                Clear recipients
+            </button>
         </div>
 
         <div class="email-operations-container">
