@@ -1,0 +1,12 @@
+@import '../../shared/_ui-tools.scss';
+@import '../../shared/_variables.scss';
+
+:host {
+    mat-form-field {
+        width: 100%;
+    }
+
+    .actions {
+        justify-content: space-between;
+    }
+}
