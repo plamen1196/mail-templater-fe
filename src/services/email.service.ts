@@ -12,6 +12,7 @@ import { RecipientRequest } from 'src/models/recipient-request';
 import { SendMailRequest } from 'src/models/send-mail-request';
 import { SmtpServerResource } from 'src/models/smtp-server-resource';
 import { CredentialsRequest } from 'src/models/credentials-resource';
+import { PreviewEmailRequest } from 'src/models/preview-email-request';
 
 @Injectable({
   providedIn: 'root'
@@ -64,39 +65,66 @@ export class EmailService {
     emailTemplate: EmailTemplate,
     recipients: Array<Recipient>,
     isHtml: boolean,
+    includeConfirmationLink: boolean,
     credentials?: CredentialsRequest): Observable<number> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    const payload = this.buildSendMailRequest(emailTemplate, recipients, isHtml, credentials);
+    const payload = this.buildSendEmailRequest(emailTemplate, recipients, isHtml, includeConfirmationLink, credentials);
 
     return this.httpClient.post<number>(EmailTemplaterApi.SEND_MAILS, payload, { headers });
   }
 
   previewEmails(emailTemplate: EmailTemplate, recipients: Array<Recipient>): Observable<Array<PreviewRecipientEmail>> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    const payload = this.buildSendMailRequest(emailTemplate, recipients, false);
+    const payload = this.buildPreviewEmailRequest(emailTemplate, recipients, false);
 
     return this.httpClient.post<Array<PreviewRecipientEmail>>(EmailTemplaterApi.PREVIEW_MAILS, payload, { headers });
   }
 
-  private buildSendMailRequest(emailTemplate: EmailTemplate, recipients: Array<Recipient>, isHtml: boolean, credentials?: CredentialsRequest): SendMailRequest {
-    const sendMailRequest = new SendMailRequest();
-    sendMailRequest.title = emailTemplate.title;
-    sendMailRequest.message = emailTemplate.message;
-    /* 
-     * It is possible that the template does not have placeholders (ordinary email).
-     * In this case we need to pass empty array, due to the @NotNull constraint by the backend.
-    */
-    sendMailRequest.placeholders = emailTemplate.placeholders ? emailTemplate.placeholders : [];
-    sendMailRequest.recipients = this.buildRecipientRequests(recipients);
-    sendMailRequest.isHtml = isHtml;
-    
-    if (credentials?.username && credentials?.password && credentials?.smtpServerName) {
-     sendMailRequest.credentials = credentials; 
-    }
+  private buildSendEmailRequest(
+    emailTemplate: EmailTemplate,
+    recipients: Array<Recipient>,
+    isHtml: boolean,
+    includeConfirmationLink: boolean,
+    credentials?: CredentialsRequest): SendMailRequest {
+      const sendMailRequest = new SendMailRequest();
+      sendMailRequest.title = emailTemplate.title;
+      sendMailRequest.message = emailTemplate.message;
 
-    console.log(sendMailRequest);
+      /* 
+      * It is possible that the template does not have placeholders (ordinary email).
+      * In this case we need to pass empty array, due to the @NotNull constraint by the backend.
+      */
+      sendMailRequest.placeholders = emailTemplate.placeholders ? emailTemplate.placeholders : [];
+      sendMailRequest.recipients = this.buildRecipientRequests(recipients);
+      sendMailRequest.isHtml = isHtml;
+      sendMailRequest.includeConfirmationLink = includeConfirmationLink;
+      
+      if (credentials?.username && credentials?.password && credentials?.smtpServerName) {
+        sendMailRequest.credentials = credentials; 
+      }
 
-    return sendMailRequest;
+      console.log(sendMailRequest);
+
+      return sendMailRequest;
+  }
+
+  private buildPreviewEmailRequest(
+    emailTemplate: EmailTemplate,
+    recipients: Array<Recipient>,
+    isHtml: boolean): PreviewEmailRequest {
+      const sendMailRequest = new PreviewEmailRequest();
+      sendMailRequest.title = emailTemplate.title;
+      sendMailRequest.message = emailTemplate.message;
+
+      /* 
+      * It is possible that the template does not have placeholders (ordinary email).
+      * In this case we need to pass empty array, due to the @NotNull constraint by the backend.
+      */
+      sendMailRequest.placeholders = emailTemplate.placeholders ? emailTemplate.placeholders : [];
+      sendMailRequest.recipients = this.buildRecipientRequests(recipients);
+      sendMailRequest.isHtml = isHtml;
+
+      return sendMailRequest;
   }
 
   private buildRecipientRequests(recipients: Array<Recipient>): Array<RecipientRequest> {

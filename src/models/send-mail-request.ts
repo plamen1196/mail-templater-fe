@@ -5,5 +5,6 @@ import { CredentialsRequest } from "./credentials-resource";
 export class SendMailRequest extends EmailTemplate {
     recipients: Array<RecipientRequest>;
     isHtml: boolean;
+    includeConfirmationLink: boolean;
     credentials?: CredentialsRequest;
 }

@@ -71,6 +71,11 @@
                     [(ngModel)]="sendAsCustomSender">
                     Send as custom sender
                 </mat-checkbox>
+                <mat-checkbox
+                    required
+                    [(ngModel)]="includeConfirmationLink">
+                    Include confirmation link
+                </mat-checkbox>
                 <button mat-raised-button
                         color="primary"
                         (click)="send()"

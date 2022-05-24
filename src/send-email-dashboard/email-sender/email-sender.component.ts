@@ -32,6 +32,7 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
   sending = false;
 
   sendAsCustomSender = false;
+  includeConfirmationLink = false;
   customSenderFormGroup: FormGroup;
   smtpServers: Array<SmtpServerResource>;
   showPassword = false;
@@ -93,13 +94,16 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
       credentials.smtpServerName = this.customSenderFormGroup.controls['smtpserver'].value
     }
 
-    console.log(credentials);
-
     this.sending = true;
-    this.emailService.sendEmails(this.emailTemplate, this.recipients, this.isHtml, credentials ? credentials : undefined).subscribe(
-      (response: number) => { this.handleSuccess(response); },
-      (response: HttpErrorResponse) => { this.handleFailure(response); }
-    );
+    this.emailService.sendEmails(
+      this.emailTemplate,
+      this.recipients,
+      this.isHtml,
+      this.includeConfirmationLink,
+      credentials ? credentials : undefined).subscribe(
+        (response: number) => { this.handleSuccess(response); },
+        (response: HttpErrorResponse) => { this.handleFailure(response); }
+        );
   }
 
   onPreviewAsSelectionChange(event: { value: RecipientResource }): void {
@@ -138,7 +142,8 @@ export class EmailSenderComponent implements OnInit, OnDestroy {
 
   private handleFailure(response: HttpErrorResponse): void {
     this.sending = false;
-    this.snackbar.open("ERROR when sending message! " + response.error.message, 'Close');
+    const message = response?.error?.message ? response.error.message : response.message;
+    this.snackbar.open("ERROR when sending message! " + message, 'Close');
   }
 
   private fetchSelectedEmailTemplate(): void {
