@@ -106,14 +106,20 @@ export class RecipientGroupsListComponent implements OnInit, OnDestroy {
   }
 
   private populateRecipientsData(): void {
-    if (!this.selectedRecipientGroup || !this.selectedRecipientGroup.recipientIds) {
+    if (!this.selectedRecipientGroup) {
       return;
+    }
+
+    /* No recipient ids means that the group is empty */
+    if (!this.selectedRecipientGroup.recipientIds) {
+      this.recipientsTsvData = '';
     }
 
     this.recipientGroupService.getRecipientsOfRecipientGroupById(this.selectedRecipientGroup.id).subscribe(
       (recipients: Array<RecipientResource>) => {
       this.recipientsTsvData =
         this.utilService.buildRecipientsTsvData(recipients, this.selectedEmailTemplate?.placeholders);
+        console.log(this.recipientsTsvData);
     });
   }
 }
