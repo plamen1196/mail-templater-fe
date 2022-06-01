@@ -78,7 +78,10 @@
             Records count: <strong>{{ historyRecordsCount }}</strong>
         </h2>
         <ng-container *ngIf="sentEmails!.length else empty">
-            <mat-card *ngFor="let sentEmail of sentEmails">
+            <mat-paginator [length]="paginatorLength" [pageSize]="paginatorPageSize" [pageSizeOptions]="paginatorPageSizeOptions" (page)="onChangePage($event)"></mat-paginator>
+
+            <!-- Use sentEmails for all emails without pagination -->
+            <mat-card *ngFor="let sentEmail of pagedSentEmails">
                 <mat-card-title>
                     Subject: {{ sentEmail.subject }}
                 </mat-card-title>

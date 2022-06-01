@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -17,9 +18,14 @@ export class HistoryComponent {
 
   formGroup: FormGroup;
   sentEmails: Array<SentEmailResource> = [];
+  pagedSentEmails: Array<SentEmailResource> = [];
   
   historyRecordsHeading: string = '';
   historyRecordsCount: number = 0;
+
+  paginatorLength: number = 0;
+  readonly paginatorPageSize: number = 5;
+  readonly paginatorPageSizeOptions: Array<number> = [5, 10, 25, 100];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -71,6 +77,18 @@ export class HistoryComponent {
     );
   }
 
+  onChangePage(event: PageEvent): void {
+    const totalCount = this.sentEmails.length;
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+
+    if (endIndex > totalCount) {
+      endIndex = totalCount;
+    }
+
+    this.pagedSentEmails = this.sentEmails.slice(startIndex, endIndex);
+  }
+
   private generateForm(): FormGroup {
     const form: FormGroup = this.formBuilder.group({});
 
@@ -88,6 +106,10 @@ export class HistoryComponent {
   private handleSucces(response: Array<SentEmailResource>): void {
     this.sentEmails = response;
     this.historyRecordsCount = this.sentEmails?.length || 0;
+
+    /* Update pagedSentEmails and total count (paginatorLength). */
+    this.pagedSentEmails = this.sentEmails.slice(0, this.paginatorPageSize);
+    this.paginatorLength = this.sentEmails.length;
   }
 
   private handleFailure(response: HttpErrorResponse): void {
