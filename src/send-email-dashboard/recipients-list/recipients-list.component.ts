@@ -29,6 +29,8 @@ export class RecipientsListComponent implements OnInit, OnDestroy {
   clipboardButtonDisabled = false;
   clipboardButtonText = COPY_TO_CLIPBOARD_ENABLED;
 
+  placeholdersListHint: string | undefined;
+
   private readonly destroy$ = new Subject<void>();
 
   constructor(
@@ -101,6 +103,9 @@ export class RecipientsListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((emailTemplate: EmailTemplate | null) => {
         this.selectedEmailTemplate = emailTemplate;
+
+        const placeholders = this.selectedEmailTemplate?.placeholders;
+        this.placeholdersListHint = `Placeholders: email, ${placeholders?.length ? placeholders.join(', ') : ''}`;
       })
   }
 
