@@ -7,4 +7,5 @@ export class SentEmailResource {
     sentSuccessfully: boolean;
     timestamp: Date;
     confirmation: number;
+    errorMessage: string; /* Optional */
 }

@@ -102,6 +102,10 @@
                         <span class="email-field">Sent successfully: </span>
                         <span class="sent-successfully-field" [class.sent-successfully]="sentEmail.sentSuccessfully">
                             {{ sentEmail.sentSuccessfully ? 'Yes' : 'No' }}
+
+                            <span *ngIf="!sentEmail.sentSuccessfully" class="error-message">
+                                ({{ sentEmail.errorMessage }})
+                            </span>
                         </span>
                     </div>
                     <div class="confirmation-field">

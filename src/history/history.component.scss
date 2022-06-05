@@ -82,6 +82,10 @@
                     &.sent-successfully {
                         color: lightgreen;
                     }
+
+                    .error-message {
+                        font-style: italic;
+                    }
                 }
 
                 .confirmation-field {
