@@ -87,6 +87,7 @@ export class EmailService {
     includeConfirmationLink: boolean,
     credentials?: CredentialsRequest): SendMailRequest {
       const sendMailRequest = new SendMailRequest();
+      sendMailRequest.id = emailTemplate.id;
       sendMailRequest.title = emailTemplate.title;
       sendMailRequest.message = emailTemplate.message;
 
