@@ -24,7 +24,7 @@ export class HistoryComponent {
   historyRecordsCount: number = 0;
 
   paginatorLength: number = 0;
-  readonly paginatorPageSize: number = 5;
+  paginatorPageSize: number = 5;
   readonly paginatorPageSizeOptions: Array<number> = [5, 10, 25, 100];
 
   constructor(
@@ -78,6 +78,9 @@ export class HistoryComponent {
   }
 
   onChangePage(event: PageEvent): void {
+    // Update paginator page size for future filters
+    this.paginatorPageSize = event.pageSize;
+
     const totalCount = this.sentEmails.length;
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
@@ -86,6 +89,7 @@ export class HistoryComponent {
       endIndex = totalCount;
     }
 
+    // Slice all current emails and get a subset from them pased on paginator settings
     this.pagedSentEmails = this.sentEmails.slice(startIndex, endIndex);
   }
 
