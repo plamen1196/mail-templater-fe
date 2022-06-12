@@ -1,17 +1,17 @@
 <div class="container">
     <h1 class="mat-h1">
         <mat-icon>draw</mat-icon>
-        Email templates
+        {{ 'CONTENT.EMAIL_TEMPLATES.DASHBOARD.TITLE' | translate }}
     </h1>
     <div class="heading-container">
         <button mat-raised-button color="primary" (click)="onCreateTemplate()">
-            + Create new email template
+            {{ 'CONTENT.EMAIL_TEMPLATES.DASHBOARD.CREATE' | translate }}
         </button>
         <span class="separator">
-            OR
+            {{ 'CONTENT.EMAIL_TEMPLATES.DASHBOARD.OR' | translate }}
         </span>
         <mat-form-field class="seach-field">
-            <mat-label>Search by title</mat-label>
+            <mat-label>{{ 'CONTENT.EMAIL_TEMPLATES.DASHBOARD.SEARCH' | translate }}</mat-label>
             <input matInput [(ngModel)]="titleSearchValue">
         </mat-form-field>
     </div>

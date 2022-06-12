@@ -1,0 +1,37 @@
+{
+    "HEADER": {
+        "TITLE": "Email Templater",
+        "AUTH": {
+            "BUTTON": "Authentication",
+            "DIALOG": {
+                "TITLE": "Set Basic Authentication",
+                "USERNAME": "Username",
+                "PASSWORD": "Password",
+                "CANCEL": "Cancel",
+                "SAVE": "Save",
+                "SUCCESS": "Basic authentication credentials saved successfully!"
+            }
+        }
+    },
+    "NAVIGATION": {
+        "HOME": "Home",
+        "EMAIL_TEMPLATES": "Email templates",
+        "RECIPIENTS": "Recipients",
+        "RECIPIENT_GROUPS": "Recipient groups",
+        "HISTORY": "History",
+        "SEND_EMAILS": "Send emails"
+    },
+    "CONTENT": {
+        "HOME": {
+            "TITLE": "Email Templater",
+            "SUBTITLE": "Get started by sending an email or view your templates and history!",
+            "VIEW_TEMPLATES": "View templates",
+            "VIEW_HISTORY": "View history",
+            "SEND_EMAILS": "Send emails",
+            "VISIT_FMI": "Visit FMI"
+        }
+    },
+    "FOOTER": {
+        "TITLE": "FMI"
+    }
+}

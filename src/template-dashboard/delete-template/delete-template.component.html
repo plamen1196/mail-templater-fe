@@ -1,20 +1,20 @@
 <h2 mat-dialog-title align="center">
     <div>
-        You are about to delete template with title: 
+        {{ 'CONTENT.EMAIL_TEMPLATES.DELETE_TEMPLATE.TITLE' | translate }}
     </div>
     <div class="email-template-title">{{ data.emailTemplate.title }}</div>
-    Are you sure?
+    {{ 'CONTENT.EMAIL_TEMPLATES.DELETE_TEMPLATE.PROMPT' | translate }}
 </h2>
 
 <mat-dialog-actions class="actions">
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        No
+        {{ 'CONTENT.EMAIL_TEMPLATES.DELETE_TEMPLATE.ACTIONS.NO' | translate }}
     </button>
     <button mat-raised-button
             color="primary"
             (click)="onDeleteTemplate()">
-        Yes
+        {{ 'CONTENT.EMAIL_TEMPLATES.DELETE_TEMPLATE.ACTIONS.YES' | translate }}
     </button>
 </mat-dialog-actions>

@@ -1,0 +1,235 @@
+{
+    "HEADER": {
+        "TITLE": "Email Templater",
+        "AUTH": {
+            "BUTTON": "Authentication",
+            "DIALOG": {
+                "TITLE": "Set Basic Authentication",
+                "USERNAME": "Username",
+                "PASSWORD": "Password",
+                "CANCEL": "Cancel",
+                "SAVE": "Save",
+                "SUCCESS": "Basic authentication credentials saved successfully!"
+            }
+        }
+    },
+    "NAVIGATION": {
+        "HOME": "Home",
+        "EMAIL_TEMPLATES": "Email templates",
+        "RECIPIENTS": "Recipients",
+        "RECIPIENT_GROUPS": "Recipient groups",
+        "HISTORY": "History",
+        "SEND_EMAILS": "Send emails"
+    },
+    "CONTENT": {
+        "HOME": {
+            "TITLE": "Email Templater",
+            "SUBTITLE": "Get started by sending an email or view your templates and history!",
+            "VIEW_TEMPLATES": "View templates",
+            "VIEW_HISTORY": "View history",
+            "SEND_EMAILS": "Send emails",
+            "VISIT_FMI": "Visit FMI"
+        },
+        "EMAIL_TEMPLATES": {
+            "DASHBOARD": {
+                "TITLE": "Email templates",
+                "CREATE": "+ Create new email template",
+                "OR": "OR",
+                "SEARCH": "Search by title"
+            },
+            "CREATE_TEMPLATE": {
+                "TITLE": "New template",
+                "TITLE_FIELD": {
+                    "LABEL": "Template title",
+                    "HINT": "Unique identifier, e.g. \"hellotemplate\""
+                },
+                "MESSAGE_FIELD": {
+                    "LABEL": "Template message",
+                    "HINT": "Characters:"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "CREATE": "Create"
+                }
+            },
+            "DELETE_TEMPLATE": {
+                "TITLE": "You are about to delete template with title: ",
+                "PROMPT": "Are you sure?",
+                "ACTIONS": {
+                    "NO": "No",
+                    "YES": "Yes"
+                }
+            },
+            "EDIT_TEMPLATE": {
+                "TITLE": "Edit template",
+                "TITLE_FIELD": {
+                    "LABEL": "Template title"
+                },
+                "MESSAGE_FIELD": {
+                    "LABEL": "Template message",
+                    "HINT": "Characters:"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "SAVE": "Save"
+                }
+            }
+        },
+        "RECIPIENTS": {
+            "DASHBOARD": {
+                "TITLE": "Recipients",
+                "CREATE": "+ Create new recipient",
+                "OR": "OR",
+                "SEARCH": "Search by email",
+                "FIRST_NAME": "First name: ",
+                "LAST_NAME": "Last name: ",
+                "PHONE_NUMBER": "Phone number: ",
+                "ADDRESS": "Address: "
+            },
+            "CREATE_RECIPIENT": {
+                "TITLE": "New recipient",
+                "EMAIL_FIELD": {
+                    "LABEL": "Email"
+                },
+                "FIRST_NAME_FIELD": {
+                    "LABEL": "First name"
+                },
+                "LAST_NAME_FIELD": {
+                    "LABEL": "Last name"
+                },
+                "PHONE_NUMBER_FIELD": {
+                    "LABEL": "Phone number"
+                },
+                "ADDRESS_FIELD": {
+                    "LABEL": "Address"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "CREATE": "Create"
+                }
+            },
+            "DELETE_RECIPIENT": {
+                "TITLE": "You are about to delete recipient with email: ",
+                "PROMPT": "Are you sure?",
+                "ACTIONS": {
+                    "NO": "No",
+                    "YES": "Yes"
+                }
+            },
+            "EDIT_RECIPIENT": {
+                "TITLE": "Edit recipient",
+                "EMAIL_FIELD": {
+                    "LABEL": "Email"
+                },
+                "FIRST_NAME_FIELD": {
+                    "LABEL": "First name"
+                },
+                "LAST_NAME_FIELD": {
+                    "LABEL": "Last name"
+                },
+                "PHONE_NUMBER_FIELD": {
+                    "LABEL": "Phone number"
+                },
+                "ADDRESS_FIELD": {
+                    "LABEL": "Address"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "SAVE": "Save"
+                }
+            }
+        },
+        "RECIPIENT_GROUPS": {
+            "DASHBOARD": {
+                "TITLE": "Recipient groups",
+                "CREATE": "+ Create new recipient group",
+                "OR": "OR",
+                "SEARCH": "Search by title",
+                "SELECT": "Select",
+                "DETAILS": {
+                    "LIST_HEADER": "Recipients",
+                    "UNSELECTED": "No recipient group selected",
+                    "EMPTY": "The group is empty"
+                }
+            },
+            "CREATE_RECIPIENT_GROUP": {
+                "TITLE": "New recipient group",
+                "TITLE_FIELD": {
+                    "LABEL": "Recipient group title",
+                    "HINT": "Unique identifier, e.g. \"friends\""
+                },
+                "RECIPIENTS_FIELD": {
+                    "LABEL": "Recipient group recipients",
+                    "HINT": "Check all recipients that will be included in the group"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "CREATE": "Create"
+                }
+            },
+            "DELETE_RECIPIENT_GROUP": {
+                "TITLE": "You are about to delete recipient group with title: ",
+                "PROMPT": "Are you sure?",
+                "ACTIONS": {
+                    "NO": "No",
+                    "YES": "Yes"
+                }
+            },
+            "EDIT_RECIPIENT_GROUP": {
+                "TITLE": "Edit recipient group",
+                "TITLE_FIELD": {
+                    "LABEL": "Recipient group title",
+                    "HINT": "Unique identifier"
+                },
+                "RECIPIENTS_FIELD": {
+                    "LABEL": "Recipient group recipients"
+                },
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "SAVE": "Save"
+                }
+            }
+        },
+        "HISTORY": {
+            "TITLE": "History",
+            "FULL": "View full history of sent emails",
+            "OR": "OR",
+            "FILTER": {
+                "SUBJECT_LABEL": "Subject",
+                "FROM_LABEL": "From",
+                "TO_LABEL": "To",
+                "CONFIRMATION_LABEL": "Confirmation",
+                "SENT_STATUS_LABEL": "Sent status",
+                "DATE_RANGE_LABEL": "Enter a date range",
+                "DATE_RANGE_START_LABEL": "Start date",
+                "DATE_RANGE_END_LABEL": "End date",
+                "ANY": "Any",
+                "CLEAR_ALL": "Clear all",
+                "GO": "Go"
+            },
+            "RESULT": {
+                "RECORDS_COUNT": "Records count: ",
+                "SUBJECT_LABEL": "Subject: ",
+                "FROM_LABEL": "From: ",
+                "TO_LABEL": "To: ",
+                "DATE_LABEL": "Date: ",
+                "SENT_STATUS_LABEL": "Sent successfully: ",
+                "SENT_STATUS_VALUES": {
+                    "NO": "No",
+                    "YES": "Yes"
+                },
+                "CONFIRMATION_LABEL": "Confirmation: ",
+                "CONFIRMATION_VALUES": {
+                    "UNCONFIRMED": "Unconfirmed",
+                    "RECEIVED": "Received",
+                    "RECEIVED_AND_CONFIRMED": "Received and confirmed",
+                    "RECEIVED_AND_REJECTED": "Received and rejected"
+                },
+                "MESSAGE_LABEL": "Message: "
+            }
+        }
+    },
+    "FOOTER": {
+        "TITLE": "FMI"
+    }
+}

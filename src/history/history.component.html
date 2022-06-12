@@ -1,58 +1,58 @@
 <div class="container">
     <h1 class="mat-h1">
         <mat-icon>history</mat-icon>
-        History
+        {{ 'CONTENT.HISTORY.TITLE' | translate }}
     </h1>
 
     <div class="heading-container">
         <button mat-raised-button color="primary" (click)="onLoadFullHistory()">
-            View full history of sent emails
+            {{ 'CONTENT.HISTORY.FULL' | translate }}
         </button>
         <span class="separator">
-            OR
+            {{ 'CONTENT.HISTORY.OR' | translate }}
         </span>
         <form [formGroup]="formGroup" name="formGroup" (ngSubmit)="onSubmit()">
             <div class="filter-row">
                 <mat-form-field>
-                    <mat-label>Subject</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.SUBJECT_LABEL' | translate }}</mat-label>
                     <input matInput
                         [formControlName]="'subject'">
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>From</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.FROM_LABEL' | translate }}</mat-label>
                     <input matInput
                         [formControlName]="'from'">
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>To</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.TO_LABEL' | translate }}</mat-label>
                     <input matInput
                         [formControlName]="'to'">
                 </mat-form-field>
             </div>
             <div class="filter-row">
                 <mat-form-field>
-                    <mat-label>Confirmation</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.CONFIRMATION_LABEL' | translate }}</mat-label>
                     <mat-select [formControlName]="'confirmation'">
-                        <mat-option [value]="0">{{ 'Unconfirmed' }}</mat-option>
-                        <mat-option [value]="1">{{ 'Received' }}</mat-option>
-                        <mat-option [value]="2">{{ 'Received and confirmed' }}</mat-option>
-                        <mat-option [value]="3">{{ 'Received and rejected' }}</mat-option>
-                        <mat-option [value]="null">{{ 'Any' }}</mat-option>
+                        <mat-option [value]="0">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.UNCONFIRMED' | translate }}</mat-option>
+                        <mat-option [value]="1">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED' | translate }}</mat-option>
+                        <mat-option [value]="2">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED_AND_CONFIRMED' | translate }}</mat-option>
+                        <mat-option [value]="3">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED_AND_REJECTED' | translate }}</mat-option>
+                        <mat-option [value]="null">{{ 'CONTENT.HISTORY.FILTER.ANY' | translate }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Sent status</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.SENT_STATUS_LABEL' | translate }}</mat-label>
                     <mat-select [formControlName]="'sentsuccessfully'">
-                        <mat-option [value]="true">{{ 'Success' }}</mat-option>
-                        <mat-option [value]="false">{{ 'Fail' }}</mat-option>
-                        <mat-option [value]="null">{{ 'Any' }}</mat-option>
+                        <mat-option [value]="true">{{ 'CONTENT.HISTORY.RESULT.SENT_STATUS_VALUES.YES' | translate }}</mat-option>
+                        <mat-option [value]="false">{{ 'CONTENT.HISTORY.RESULT.SENT_STATUS_VALUES.NO' | translate }}</mat-option>
+                        <mat-option [value]="null">{{ 'CONTENT.HISTORY.FILTER.ANY' | translate }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                    <mat-label>Enter a date range</mat-label>
+                    <mat-label>{{ 'CONTENT.HISTORY.FILTER.DATE_RANGE_LABEL' | translate }}</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate placeholder="Start date" [formControlName]="'startDate'">
-                        <input matEndDate placeholder="End date" [formControlName]="'endDate'">
+                        <input matStartDate [placeholder]="'CONTENT.HISTORY.FILTER.DATE_RANGE_START_LABEL' | translate" [formControlName]="'startDate'">
+                        <input matEndDate [placeholder]="'CONTENT.HISTORY.FILTER.DATE_RANGE_END_LABEL' | translate" [formControlName]="'endDate'">
                     </mat-date-range-input>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker></mat-date-range-picker>
@@ -61,10 +61,10 @@
 
             <div>
                 <button mat-raised-button color="primary" type="reset">
-                    Clear all
+                    {{ 'CONTENT.HISTORY.FILTER.CLEAR_ALL' | translate }}
                 </button>
                 <button mat-raised-button color="primary" type="submit">
-                    Go
+                    {{ 'CONTENT.HISTORY.FILTER.GO' | translate }}
                 </button>
             </div>
         </form>
@@ -75,7 +75,8 @@
             Showing: <strong>{{ historyRecordsHeading }}</strong>
         </h2> -->
         <h2 class="mat-h2">
-            Records count: <strong>{{ historyRecordsCount }}</strong>
+            {{ 'CONTENT.HISTORY.RESULT.RECORDS_COUNT' | translate }}
+            <strong>{{ historyRecordsCount }}</strong>
         </h2>
         <ng-container *ngIf="sentEmails!.length else empty">
             <mat-paginator [length]="paginatorLength" [pageSize]="paginatorPageSize" [pageSizeOptions]="paginatorPageSizeOptions" (page)="onChangePage($event)"></mat-paginator>
@@ -83,25 +84,26 @@
             <!-- Use sentEmails for all emails without pagination -->
             <mat-card *ngFor="let sentEmail of pagedSentEmails">
                 <mat-card-title>
-                    Subject: {{ sentEmail.subject }}
+                    {{ 'CONTENT.HISTORY.RESULT.SUBJECT_LABEL' | translate }}
+                    {{ sentEmail.subject }}
                 </mat-card-title>
                 <mat-card-content>
                     <div>
-                        <span class="email-field">From: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.FROM_LABEL' | translate }}</span>
                         {{ sentEmail.senderEmail }}
                     </div>
                     <div>
-                        <span class="email-field">To: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.TO_LABEL' | translate }}</span>
                         {{ sentEmail.recipientEmail }}
                     </div>
                     <div>
-                        <span class="email-field">Date: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.DATE_LABEL' | translate }}</span>
                         {{ sentEmail.timestamp }}
                     </div>
                     <div>
-                        <span class="email-field">Sent successfully: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.SENT_STATUS_LABEL' | translate }}</span>
                         <span class="sent-successfully-field" [class.sent-successfully]="sentEmail.sentSuccessfully">
-                            {{ sentEmail.sentSuccessfully ? 'Yes' : 'No' }}
+                            {{ (sentEmail.sentSuccessfully ? 'CONTENT.HISTORY.RESULT.SENT_STATUS_VALUES.YES' : 'CONTENT.HISTORY.RESULT.SENT_STATUS_VALUES.NO') | translate }}
 
                             <span *ngIf="!sentEmail.sentSuccessfully" class="error-message">
                                 ({{ sentEmail.errorMessage }})
@@ -109,16 +111,16 @@
                         </span>
                     </div>
                     <div class="confirmation-field">
-                        <span class="email-field">Confirmation: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_LABEL' | translate }}</span>
                         <ng-container [ngSwitch]="sentEmail.confirmation">
-                            <span *ngSwitchCase="0" class="unconfirmed">Unconfirmed</span>
-                            <span *ngSwitchCase="1" class="received">Received</span>
-                            <span *ngSwitchCase="2" class="received-and-confirmed">Received and confirmed</span>
-                            <span *ngSwitchCase="3" class="received-and-rejected">Received and rejected</span>
+                            <span *ngSwitchCase="0" class="unconfirmed">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.UNCONFIRMED' | translate }}</span>
+                            <span *ngSwitchCase="1" class="received">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED' | translate }}</span>
+                            <span *ngSwitchCase="2" class="received-and-confirmed">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED_AND_CONFIRMED' | translate }}</span>
+                            <span *ngSwitchCase="3" class="received-and-rejected">{{ 'CONTENT.HISTORY.RESULT.CONFIRMATION_VALUES.RECEIVED_AND_REJECTED' | translate }}</span>
                         </ng-container>
                     </div>
                     <div>
-                        <span class="email-field">Message: </span>
+                        <span class="email-field">{{ 'CONTENT.HISTORY.RESULT.MESSAGE_LABEL' | translate }}</span>
                         {{ sentEmail.message }}
                     </div>
                 </mat-card-content>

@@ -1,17 +1,17 @@
 <div class="container">
     <h1 class="mat-h1">
         <mat-icon>people</mat-icon>
-        Recipient groups
+        {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.TITLE' | translate }}
     </h1>
     <div class="heading-container">
         <button mat-raised-button color="primary" (click)="onCreateRecipientGroup()">
-            + Create new recipient group
+            {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.CREATE' | translate }}
         </button>
         <span class="separator">
-            OR
+            {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.OR' | translate }}
         </span>
         <mat-form-field class="seach-field">
-            <mat-label>Search by title</mat-label>
+            <mat-label>{{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.SEARCH' | translate }}</mat-label>
             <input matInput [(ngModel)]="titleSearchValue">
         </mat-form-field>
     </div>
@@ -30,7 +30,7 @@
                         <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-raised-button color="primary" (click)="onSelectRecipientGroup(recipientGroup)">
-                        Select
+                        {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.SELECT' | translate }}
                     </button>
                 </mat-card-actions>
             </mat-card>

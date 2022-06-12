@@ -1,11 +1,11 @@
 <section class="main-section">
     <div class="banner-section">
-        <h1 class="mat-h1">Email Templater</h1>
-        <h2>Get started by sending an email or view your templates and history!</h2>
+        <h1 class="mat-h1">{{ 'CONTENT.HOME.TITLE' | translate }}</h1>
+        <h2>{{ 'CONTENT.HOME.SUBTITLE' | translate }}</h2>
         <div>
-            <button mat-raised-button routerLink="/templates" class="action-button">View templates</button>
-            <button mat-raised-button routerLink="/history" class="action-button">View history</button>
-            <button mat-raised-button routerLink="/send-emails">Send emails</button>
+            <button mat-raised-button routerLink="/templates" class="action-button">{{ 'CONTENT.HOME.VIEW_TEMPLATES' | translate }}</button>
+            <button mat-raised-button routerLink="/history" class="action-button">{{ 'CONTENT.HOME.VIEW_HISTORY' | translate }}</button>
+            <button mat-raised-button routerLink="/send-emails">{{ 'CONTENT.HOME.SEND_EMAILS' | translate }}</button>
         </div>
     </div>
     <div class="resources-section">
@@ -13,7 +13,7 @@
             <a class="resource-anchor mat-h4 resource-text" target="_blank" href="https://www.fmi.uni-sofia.bg/">
                 <img src="https://www.fmi.uni-sofia.bg/sites/all/themes/fmi/su-logo.png">
                 <span>
-                    Visit FMI
+                    {{ 'CONTENT.HOME.VISIT_FMI' | translate }}
                 </span>
             </a>
         </div>

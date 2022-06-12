@@ -7,7 +7,7 @@
     <mat-card-content>
         <ng-container *ngIf="recipients?.length else emptyRecipients">
             <mat-list>
-                <div mat-subheader>Recipients</div>
+                <div mat-subheader>{{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.DETAILS.LIST_HEADER' | translate }}</div>
                 <mat-list-item *ngFor="let recipient of recipients">
                     <mat-icon mat-list-icon>person</mat-icon>
                     <div mat-line>{{ recipient.email }}</div>
@@ -20,11 +20,11 @@
 <ng-template #missingRecipientGroupTemplate>
     <mat-card>
         <mat-card-title>
-            No recipient group selected
+            {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.DETAILS.UNSELECTED' | translate }}
         </mat-card-title>
     </mat-card>
 </ng-template>
 
 <ng-template #emptyRecipients>
-    The group is empty
+    {{ 'CONTENT.RECIPIENT_GROUPS.DASHBOARD.DETAILS.EMPTY' | translate }}
 </ng-template>

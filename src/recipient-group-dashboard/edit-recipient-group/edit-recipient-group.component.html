@@ -1,20 +1,20 @@
 <h2 mat-dialog-title>
-    Edit recipient group
+    {{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.TITLE' | translate }}
     <mat-icon>edit</mat-icon>
 </h2>
 
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="formGroup" name="formGroup">
         <mat-form-field>
-            <mat-label>Recipient group title</mat-label>
-            <mat-hint>Unique identifier</mat-hint>
+            <mat-label>{{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.TITLE_FIELD.LABEL' | translate }}</mat-label>
+            <mat-hint>{{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.TITLE_FIELD.HINT' | translate }}</mat-hint>
             <input matInput
                    required
                    [formControlName]="'title'"
                    >
         </mat-form-field>
         <mat-form-field class="recipients-form-field">
-            <mat-label>Recipient group recipients</mat-label>
+            <mat-label>{{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.RECIPIENTS_FIELD.LABEL' | translate }}</mat-label>
             <mat-select [formControlName]="'groupRecipients'" (selectionChange)="onGroupRecipientsSelectionChange($event)" multiple>
                 <mat-option *ngFor="let recipient of recipients" [value]="recipient.id">{{ recipient.email }}</mat-option>
             </mat-select>
@@ -30,12 +30,12 @@
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        Cancel
+        {{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.ACTIONS.CANCEL' | translate }}
     </button>
     <button mat-raised-button
             color="primary"
             [disabled]="formGroup.invalid"
             (click)="onSaveRecipientGroup()">
-        Save
+        {{ 'CONTENT.RECIPIENT_GROUPS.EDIT_RECIPIENT_GROUP.ACTIONS.SAVE' | translate }}
     </button>
 </mat-dialog-actions>

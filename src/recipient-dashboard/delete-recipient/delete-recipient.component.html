@@ -1,20 +1,20 @@
 <h2 mat-dialog-title align="center">
     <div>
-        You are about to delete recipient with email: 
+        {{ 'CONTENT.RECIPIENTS.DELETE_RECIPIENT.TITLE' | translate }}
     </div>
     <div class="recipient-title">{{ data.recipientResource.email }}</div>
-    Are you sure?
+    {{ 'CONTENT.RECIPIENTS.DELETE_RECIPIENT.PROMPT' | translate }}
 </h2>
 
 <mat-dialog-actions class="actions">
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        No
+        {{ 'CONTENT.RECIPIENTS.DELETE_RECIPIENT.ACTIONS.NO' | translate }}
     </button>
     <button mat-raised-button
             color="primary"
             (click)="onDeleteRecipient()">
-        Yes
+        {{ 'CONTENT.RECIPIENTS.DELETE_RECIPIENT.ACTIONS.YES' | translate }}
     </button>
 </mat-dialog-actions>

@@ -1,20 +1,20 @@
 <h2 mat-dialog-title align="center">
     <div>
-        You are about to delete recipient group with title: 
+        {{ 'CONTENT.RECIPIENT_GROUPS.DELETE_RECIPIENT_GROUP.TITLE' | translate }}
     </div>
     <div class="recipient-group-title">{{ data.recipientGroupResource.title }}</div>
-    Are you sure?
+    {{ 'CONTENT.RECIPIENT_GROUPS.DELETE_RECIPIENT_GROUP.PROMPT' | translate }}
 </h2>
 
 <mat-dialog-actions class="actions">
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        No
+        {{ 'CONTENT.RECIPIENT_GROUPS.DELETE_RECIPIENT_GROUP.ACTIONS.NO' | translate }}
     </button>
     <button mat-raised-button
             color="primary"
             (click)="onDeleteRecipientGroup()">
-        Yes
+        {{ 'CONTENT.RECIPIENT_GROUPS.DELETE_RECIPIENT_GROUP.ACTIONS.YES' | translate }}
     </button>
 </mat-dialog-actions>

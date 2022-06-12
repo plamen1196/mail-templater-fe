@@ -1,36 +1,36 @@
 <h2 mat-dialog-title>
-    Edit recipient
+    {{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.TITLE' | translate }}
     <mat-icon>edit</mat-icon>
 </h2>
 
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="formGroup" name="formGroup">
         <mat-form-field>
-            <mat-label>Email</mat-label>
+            <mat-label><mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.EMAIL_FIELD.LABEL' | translate }}</mat-label></mat-label>
             <input matInput
                    [formControlName]="'email'"
                    >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>First name</mat-label>
+            <mat-label><mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.FIRST_NAME_FIELD.LABEL' | translate }}</mat-label></mat-label>
             <input matInput
                    [formControlName]="'firstName'"
                    >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Last name</mat-label>
+            <mat-label><mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.LAST_NAME_FIELD.LABEL' | translate }}</mat-label></mat-label>
             <input matInput
                    [formControlName]="'lastName'"
                    >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Phone number</mat-label>
+            <mat-label><mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.PHONE_NUMBER_FIELD.LABEL' | translate }}</mat-label></mat-label>
             <input matInput
                    [formControlName]="'phoneNumber'"
                    >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Address</mat-label>
+            <mat-label><mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.ADDRESS_FIELD.LABEL' | translate }}</mat-label></mat-label>
             <input matInput
                    [formControlName]="'address'"
                    >
@@ -42,12 +42,12 @@
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        Cancel
+        <mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.ACTIONS.CANCEL' | translate }}</mat-label>
     </button>
     <button mat-raised-button
             color="primary"
             [disabled]="formGroup.invalid"
             (click)="onSaveRecipient()">
-        Save
+        <mat-label>{{ 'CONTENT.RECIPIENTS.EDIT_RECIPIENT.ACTIONS.SAVE' | translate }}</mat-label>
     </button>
 </mat-dialog-actions>

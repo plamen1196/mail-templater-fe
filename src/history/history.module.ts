@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,12 +20,20 @@ import { MatNativeDateModule, MatOptionModule, MAT_DATE_LOCALE } from '@angular/
 import { HistoryComponent } from './history.component';
 import { HistoryRoutingModule } from './history-routing.module';
 import { MatSelectModule } from '@angular/material/select';
+import { httpLoaderFactory } from 'src/app/app.module';
 
 @NgModule({
   declarations: [
     HistoryComponent
   ],
   imports: [
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory
+      },
+      defaultLanguage: 'en'
+    }),
     CommonModule,
     HistoryRoutingModule,
     FormsModule,

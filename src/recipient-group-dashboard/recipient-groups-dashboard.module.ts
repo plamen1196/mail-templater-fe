@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -22,6 +24,7 @@ import { RecipientGroupDetailsComponent } from './recipient-group-details/recipi
 import { CreateRecipientGroupComponent } from './create-recipient-group/create-recipient-group.component';
 import { EditRecipientGroupComponent } from './edit-recipient-group/edit-recipient-group.component';
 import { DeleteRecipientGroupComponent } from './delete-recipient-group/delete-recipient-group.component';
+import { httpLoaderFactory } from 'src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,13 @@ import { DeleteRecipientGroupComponent } from './delete-recipient-group/delete-r
     DeleteRecipientGroupComponent
   ],
   imports: [
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory
+      },
+      defaultLanguage: 'en'
+    }),
     CommonModule,
     RecipientGroupsDashboardRoutingModule,
     FormsModule,

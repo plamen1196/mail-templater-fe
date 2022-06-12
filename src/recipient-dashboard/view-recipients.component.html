@@ -1,17 +1,17 @@
 <div class="container">
     <h1 class="mat-h1">
         <mat-icon>person</mat-icon>
-        Recipients
+        {{ 'CONTENT.RECIPIENTS.DASHBOARD.TITLE' | translate }}
     </h1>
     <div class="heading-container">
         <button mat-raised-button color="primary" (click)="onCreateRecipient()">
-            + Create new recipient
+            {{ 'CONTENT.RECIPIENTS.DASHBOARD.CREATE' | translate }}
         </button>
         <span class="separator">
-            OR
+            {{ 'CONTENT.RECIPIENTS.DASHBOARD.OR' | translate }}
         </span>
         <mat-form-field class="seach-field">
-            <mat-label>Search by email</mat-label>
+            <mat-label>{{ 'CONTENT.RECIPIENTS.DASHBOARD.SEARCH' | translate }}</mat-label>
             <input matInput [(ngModel)]="emailSearchValue">
         </mat-form-field>
     </div>
@@ -22,10 +22,18 @@
                     <mat-card-title>{{ recipient.email }}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <p *ngIf="recipient.firstName">First name: {{ recipient.firstName }}</p>
-                    <p *ngIf="recipient.lastName">Last name: {{ recipient.lastName }}</p>
-                    <p *ngIf="recipient.phoneNumber">Phone number: {{ recipient.phoneNumber }}</p>
-                    <p *ngIf="recipient.address">Address: {{ recipient.address }}</p>
+                    <p *ngIf="recipient.firstName">
+                        {{ 'CONTENT.RECIPIENTS.DASHBOARD.FIRST_NAME' | translate }} {{ recipient.firstName }}
+                    </p>
+                    <p *ngIf="recipient.lastName">
+                        {{ 'CONTENT.RECIPIENTS.DASHBOARD.LAST_NAME' | translate }} {{ recipient.lastName }}
+                    </p>
+                    <p *ngIf="recipient.phoneNumber">
+                        {{ 'CONTENT.RECIPIENTS.DASHBOARD.PHONE_NUMBER' | translate }} {{ recipient.phoneNumber }}
+                    </p>
+                    <p *ngIf="recipient.address">
+                        {{ 'CONTENT.RECIPIENTS.DASHBOARD.ADDRESS' | translate }} {{ recipient.address }}
+                    </p>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-icon-button (click)="onDeleteRecipient(recipient)">
