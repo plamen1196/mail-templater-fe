@@ -1,4 +1,4 @@
-<label>Selected template:</label>
+<label>{{ 'CONTENT.SEND_EMAILS.TEMPLATE_SELECTOR.SELECTED_LABEL' | translate }}</label>
 
 <mat-card *ngIf="selectedTemplate" class="selected-template-card">
     <mat-card-header>
@@ -12,9 +12,9 @@
 </mat-card>
 
 <mat-card *ngIf="!selectedTemplate" class="selected-template-card-empty">
-    N/A
+    {{ 'CONTENT.SEND_EMAILS.TEMPLATE_SELECTOR.UNSELECTED' | translate }}
 </mat-card>
 
 <button mat-raised-button color="primary" (click)="onSelectTemplate()">
-    Select a template
+    {{ 'CONTENT.SEND_EMAILS.TEMPLATE_SELECTOR.SELECT_PROMPT' | translate }}
 </button>

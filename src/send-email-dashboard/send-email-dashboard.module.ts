@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -31,6 +33,7 @@ import { RecipientGroupsListComponent } from './recipient-groups-list/recipient-
 import { RecipientsListComponent } from './recipients-list/recipients-list.component';
 import { EditEmailRecipientComponent } from './edit-email-recipient/edit-email-recipient.component';
 import { PreviewAllComponent } from './preview-all/preview-all.component';
+import { httpLoaderFactory } from 'src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,13 @@ import { PreviewAllComponent } from './preview-all/preview-all.component';
     PreviewAllComponent
   ],
   imports: [
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory
+      },
+      defaultLanguage: 'en'
+    }),
     CommonModule,
     SendEmailDashboardRoutingModule,
     FormsModule,

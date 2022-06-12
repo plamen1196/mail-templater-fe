@@ -105,7 +105,7 @@ export class RecipientsListComponent implements OnInit, OnDestroy {
         this.selectedEmailTemplate = emailTemplate;
 
         const placeholders = this.selectedEmailTemplate?.placeholders;
-        this.placeholdersListHint = `Placeholders: email, ${placeholders?.length ? placeholders.join(', ') : ''}`;
+        this.placeholdersListHint = `email, ${placeholders?.length ? placeholders.join(', ') : ''}`;
       })
   }
 

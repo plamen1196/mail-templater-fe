@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>
-    Select template
+    {{ 'CONTENT.SEND_EMAILS.TEMPLATE_LIST.TITLE' | translate }}
     <mat-icon>draw</mat-icon>
     <mat-form-field class="seach-field">
-        <mat-label>Search by title</mat-label>
+        <mat-label>{{ 'CONTENT.SEND_EMAILS.TEMPLATE_LIST.SEARCH' | translate }}</mat-label>
         <input matInput [(ngModel)]="titleSearchValue">
     </mat-form-field>
 </h2>
@@ -32,13 +32,13 @@
     <button mat-raised-button
             color="accent"
             (click)="onCancel()">
-        Cancel
+        {{ 'CONTENT.SEND_EMAILS.TEMPLATE_LIST.ACTIONS.CANCEL' | translate }}
     </button>
     <button mat-raised-button
             color="primary"
             [disabled]="!selectedTemplate"
             (click)="onSubmitSelection()">
-        Select
+        {{ 'CONTENT.SEND_EMAILS.TEMPLATE_LIST.ACTIONS.SELECT' | translate }}
     </button>
 </mat-dialog-actions>
 

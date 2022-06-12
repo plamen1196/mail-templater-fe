@@ -227,6 +227,53 @@
                 },
                 "MESSAGE_LABEL": "Message: "
             }
+        },
+        "SEND_EMAILS": {
+            "TITLE": "Send emails",
+            "TEMPLATE_SELECTOR": {
+                "SELECTED_LABEL": "Selected template:",
+                "UNSELECTED": "N/A",
+                "SELECT_PROMPT": "Select a template"
+            },
+            "TEMPLATE_LIST": {
+                "TITLE": "Select template",
+                "SEARCH": "Search by title",
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "SELECT": "Select"
+                }
+            },
+            "RECIPIENTS_SELECTOR": {
+                "TITLE": "Add recipients"
+            },
+            "RECIPIENTS_LIST": {
+                "TITLE": "Add recipients",
+                "INFO": "Please select recipient(s) and fill-in the details for each recipient in TSV format. The fields for each row must keep their original order.",
+                "CUSTOM_RECIPIENTS_INFO": "Custom recipients can also be added to the TSV data by following the same pattern.",
+                "RECIPIENTS_FIELD": {
+                    "LABEL": "Recipients",
+                    "HINT": "All changes to the selection list will override the current state of the TSV data."
+                },
+                "RECIPIENTS_TSV_FIELD": {
+                    "LABEL": "TSV data for the recipients."
+                },
+                "PLACEHOLDERS_PREFIX": "Placeholders: ",
+                "ACTIONS": {
+                    "CANCEL": "Cancel",
+                    "ADD": "Add"
+                }
+            },
+            "EMAIL_SENDER": {
+                "EMAIL_CONTAINER": {
+                    "TO_LABEL": "To",
+                    "TO_HINT": "Each recipient will recieve an individual email.",
+                    "SUBJECT_LABEL": "Subject",
+                    "MESSAGE_LABEL": "Message"
+                },
+                "ACTIONS_CONTAINER": {
+                    "CLEAR_RECIPIENTS_LABEL": "Clear recipients"
+                }
+            }
         }
     },
     "FOOTER": {
